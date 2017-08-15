@@ -249,7 +249,7 @@ int main()
 	num = 0;
 	cout << "\n\nOk so I think I can tell you if a number is even or if its odd. Give me a good number :";
 	cin >> num;
-	num % 2;
+	num %= 2;
 	if (num == 0)
 	{
 		cout << "EVEN!";
