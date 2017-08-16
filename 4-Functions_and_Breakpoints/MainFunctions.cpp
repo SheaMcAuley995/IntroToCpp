@@ -89,6 +89,7 @@ int ClampFunction(int x, int y, int z)
 	
 	if (z >= x && z <= y)
 	{
+
 	}
 	else if (z < x)
 	{
