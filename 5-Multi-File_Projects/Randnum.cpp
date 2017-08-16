@@ -24,16 +24,7 @@ int rngRange(int x, int y)
 
 bool Rngb()
 {
-	int r;
-	r = rand() % 2 + 1;
-	if (r == 1)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return rand() % 1;
 }
 
 bool rngbChance(int n)
