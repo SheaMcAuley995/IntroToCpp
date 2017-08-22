@@ -91,7 +91,6 @@ bool arrayUniqueness(int numbers[], int size)
 {
 	bool match = true;
 	int setnum = 0;
-	int y = 0;
 	for (int i = 0; i < size; i++)
 	{
 		
@@ -106,8 +105,6 @@ bool arrayUniqueness(int numbers[], int size)
 
 	}
 	
-	
-
 	return match;
 }
 
@@ -154,6 +151,27 @@ void DescendingNumbers(int numbers[], int size)
 	}
 }
 
+void AcendingNumbers(int numbers[], int size)
+{
+	int swapnum;
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = 0; j < size - i - 1; j++)
+		{
+			if (numbers[j] > numbers[j + 1])
+			{
+				swapnum = numbers[j];
+				numbers[j] = numbers[j + 1];
+				numbers[j + 1] = swapnum;
+			}
+		}
+	}
+	for (int i = 0; i < size; i++)
+	{
+		cout << numbers[i] << endl;
+	}
+}
+
 void insertionSort(int numbers[], int size)
 {
 	// Mainly from the internet
@@ -189,8 +207,8 @@ int main()
 	//largestValue(values, 6);
 	//findIndex(values, 6, 15);
 	//cout << arrayUniqueness(values, 6) << endl;
-	reverseNumbers(values, 6);
-	//DescendingNumbers(values, 6);
+	//reverseNumbers(values, 6);
+	DescendingNumbers(values, 6);
 	//insertionSort(values, 6);
 	system("pause");
 	return 0;
