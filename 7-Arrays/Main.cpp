@@ -75,8 +75,7 @@ int findIndex(int numbers[], int size, int value)
 {
 	int index = -1;
 	for (int i = 0; i < size; ++i)
-	{
-		
+	{	
 		if (value == numbers[i])
 		{
 			
@@ -90,30 +89,24 @@ int findIndex(int numbers[], int size, int value)
 
 bool arrayUniqueness(int numbers[], int size)
 {
-	bool match = false;
+	bool match = true;
 	int setnum = 0;
-	int x = 0;
 	int y = 0;
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < size; i++)
 	{
-		setnum = numbers[i];
 		
-
-		for (int i = 0; i < size; ++i)
+		for (int x=1; i+x < size; x++)
 		{
-			x = numbers[i];
-			if (x == setnum)
+			if (numbers[i] == numbers[i + x])
 			{
-				y += 1;
+				match = false;
 			}
-			cout << y << endl;
 		}
+
+
 	}
-	if (y < 7)
-	{
-		cout << "TRUE!" << endl;
-		match = true;
-	}
+	
+	
 
 	return match;
 }
@@ -134,10 +127,10 @@ void reverseNumbers(int numbers[], int size)
 			}
 		}
 	}
-	/*for (int i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
 		cout << numbers[i] << endl;
-	}*/
+	}
 }
 
 void DescendingNumbers(int numbers[], int size)
@@ -189,16 +182,16 @@ void insertionSort(int numbers[], int size)
 int main()
 {
 	//Print an array of numbers.
-	int values[]{ 56,21,43,76,10,3};
+	int values[]{ 2,21,43,76,10,3};
 	//printNumbers(values, 4);
 	//sumNumbers(values, 4);
 	//smallestValue(values, 6);
 	//largestValue(values, 6);
 	//findIndex(values, 6, 15);
-	//arrayUniqueness(values, 6);
-	//reverseNumbers(values, 6);
+	//cout << arrayUniqueness(values, 6) << endl;
+	reverseNumbers(values, 6);
 	//DescendingNumbers(values, 6);
-	insertionSort(values, 6);
+	//insertionSort(values, 6);
 	system("pause");
 	return 0;
 }
