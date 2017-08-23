@@ -115,6 +115,9 @@
   <ItemGroup>
     <ClInclude Include="Console.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="E:\Console Library\console.lib" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

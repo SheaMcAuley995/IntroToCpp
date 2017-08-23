@@ -24,4 +24,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="E:\Console Library\console.lib">
+      <Filter>Header Files</Filter>
+    </Library>
+  </ItemGroup>
 </Project>
