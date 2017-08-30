@@ -100,7 +100,7 @@ void rewardGen(PlayervMonster fight, Items &inv)
 
 }
 
-void monsterFight(PlayervMonster fight)
+void monsterFight(PlayervMonster fight, Items inv)
 {
 	int damage;
 	char b = 205; // ═
@@ -111,7 +111,7 @@ void monsterFight(PlayervMonster fight)
 	char br = 188;//╝
 	char trs = 185;//╣
 	char btrs = 204;//╠
-	findMonster(fight);
+	findMonster(fight, inv);
 
 	cout << "\nA " << fight.monstername << " Meets you in the arena" << endl;
 	system("pause");
@@ -121,6 +121,8 @@ void monsterFight(PlayervMonster fight)
 	while (isAlive == true)
 	{
 		int userInput = 0;
+		int monsterhit = GenerateMonsterHit(fight);
+		int playerHit = GenerateHit(fight);
 		cout << l;
 		for (int i = 0; i < 10; i++) { cout << b; };
 		cout << r;
@@ -139,9 +141,13 @@ void monsterFight(PlayervMonster fight)
 		DelayText(1, ("                          What will you do?                                     "));
 		DelayText(1, ("                                                                                "));
 		DelayText(1, ("1.Attack                                                                        "));
-		DelayText(1, ("                                                                                "));
+		DelayText(1, ("2.Inventory                                                                     "));
+		DelayText(1, ("3.Mutations                                                                     "));
+		DelayText(1, ("4.Talk it out                                                                   "));
+		
 		cout << ">";
 		cin >> userInput;
+		rollAnimate(fight);
 		switch (userInput)
 		{
 		case 1:
@@ -165,6 +171,9 @@ void monsterFight(PlayervMonster fight)
 		}
 		if (fight.monsterHP > 0)
 		{
+			rollAnimate(fight);
+			monsterhit = GenerateMonsterHit(fight);
+			
 			if (GenerateMonsterHit(fight) > fight.playerAC)
 			{
 				damage = GenerateMonsterDamge(fight);
@@ -204,4 +213,114 @@ void monsterFight(PlayervMonster fight)
 	}
 	system("pause");
 	system("CLS");
+}
+
+void rollAnimate(PlayervMonster fight)
+{
+	srand(time(NULL));
+	int animate = 0;
+	int roll;
+	char b = 205; // ═
+	char l = 201; // ╔
+	char r = 187; // ╗
+	char p = 186; // ║
+	char bl = 200;//╚
+	char br = 188;//╝
+	char trs = 185;//╣
+	char btrs = 204;//╠
+
+	for (int i = 0; i < 40; i++)
+	{
+		cout << l;
+		for (int i = 0; i < 10; i++) { cout << b; };
+		cout << r;
+		cout << "           ";
+		cout << l;
+		for (int i = 0; i < 11; i++) { cout << b; };
+		cout << r << endl;
+		cout << p << "Your HP :" << fight.playerHP << p << "           " << p << "MonsterHP:" << fight.monsterHP << p << endl;
+		cout << "           " << bl;
+		for (int i = 0; i < 11; i++) { cout << b; };
+		cout << br;
+		cout << endl;
+
+		cout << "                                                                                ";
+		cout << "                                                                                ";
+		cout << "                          What will you do?                                     ";
+		cout << "                                                                                ";
+		cout << "1.Attack                                                                        ";
+		cout << "2.Inventory                                                                     ";
+		cout << "3.Mutations                                                                     ";
+		cout << "4.Talk it out                                                                   ";
+		
+		animate = i % 8;
+		switch (animate)
+		{
+		case 0:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling.                                   "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		case 1:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling.                                   "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		case 2:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling..                                  "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		case 3:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling..                                  "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		case 4:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling...                                 "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		case 5:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling...                                 "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		case 6:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling....                                "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		case 7:
+			roll = rand() % 20 + 1;
+			DelayText(1, ("                                     Rolling....                                "));
+			DelayText(1, ("                                         "));
+			cout << roll << endl;
+			Sleep(10);
+			system("CLS");
+			break;
+		}
+		
+	}
 }

@@ -7,6 +7,7 @@
 #include<thread>
 #include "Fighter.h"
 #include "Overworld.h"
+#include "Inventory.h"
 
 using std::cout;
 using std::cin;
@@ -110,6 +111,30 @@ void CharacterCreate(PlayervMonster &fight)
 		{
 			cout << p<<"3.Constitution:" << fight.playerCON << "               "<<p << endl;
 		}
+		if (fight.playerINT > 9)
+		{
+			cout << p << "4.Intelligence:" << fight.playerINT << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "4.Intelligence:" << fight.playerINT << "               " << p << endl;
+		}
+		if (fight.playerWIS > 9)
+		{
+			cout << p << "5.Wisedom     :" << fight.playerWIS << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "5.Wisedom     :" << fight.playerWIS << "               " << p << endl;
+		}
+		if (fight.playerCHR > 9)
+		{
+			cout << p << "6.Charisma    :" << fight.playerCHR << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "6.Charisma    :" << fight.playerCHR << "               " << p << endl;
+		}
 		cout << p<<"                               "<< p << endl;
 		cout << bl;
 		for (int i = 0; i < 31; i++) { cout << b; };
@@ -179,6 +204,68 @@ void CharacterCreate(PlayervMonster &fight)
 				statchange = 0;
 				screwupcount = 0;
 				break;
+			case 4:
+				cout << "\nHow many points would you like to add to your Intelligence? \n>";
+				while (statchange <= 0)
+				{
+					cin >> statchange;
+					if (statchange < 0 && screwupcount == 0)
+					{
+						cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nIntelligence  vaule >";
+						screwupcount++;
+					}
+					else if (statchange < 0 && screwupcount > 0)
+					{
+						cout << "Agian.. Physically impossible, try again. \nIntelligence vaule >";
+					}
+				}
+				fight.playerINT += statchange;
+				fight.statLock -= statchange;
+				statchange = 0;
+				screwupcount = 0;
+				break;
+			case 5:
+				cout << "\nHow many points would you like to add to your Wisedom? \n>";
+				while (statchange <= 0)
+				{
+					cin >> statchange;
+					if (statchange < 0 && screwupcount == 0)
+					{
+						cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nWisedom  vaule >";
+						screwupcount++;
+					}
+					else if (statchange < 0 && screwupcount > 0)
+					{
+						cout << "Agian.. Physically impossible, try again. \nWisedom vaule >";
+					}
+				}
+				fight.playerWIS += statchange;
+				fight.statLock -= statchange;
+				statchange = 0;
+				screwupcount = 0;
+				break;
+			case 6:
+				cout << "\nHow many points would you like to add to your Charisma? \n>";
+				while (statchange <= 0)
+				{
+					cin >> statchange;
+					if (statchange < 0 && screwupcount == 0)
+					{
+						cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nCharisma  vaule >";
+						screwupcount++;
+					}
+					else if (statchange < 0 && screwupcount > 0)
+					{
+						cout << "Agian.. Physically impossible, try again. \nCharisma vaule >";
+					}
+				}
+				fight.playerCHR += statchange;
+				fight.statLock -= statchange;
+				statchange = 0;
+				screwupcount = 0;
+				break;
+
+
 
 	}
 	
@@ -237,6 +324,9 @@ void mathPlayerStats(PlayervMonster &fight)
 	fight.playerAGscore = (fight.playerAG / 2) - 5;
 	fight.playerSTRscore = (fight.playerSTR / 2) - 5;
 	fight.playerCONscore = (fight.playerCON / 2) - 5;
+	fight.playerCHRscore = (fight.playerCHR / 2) - 5;
+	fight.playerINTscore = (fight.playerINT / 2) - 5;
+	fight.playerWISscore = (fight.playerWIS / 2) - 5;
 	fight.playerHP = ((rand() % 12 + 8) + fight.playerCONscore);
 	fight.playerHPMax = fight.playerHP;
 }
@@ -263,15 +353,27 @@ void displayPlayerStats(PlayervMonster &fight)
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
 	cout << "Player Strength      :" << fight.playerSTR << endl;
-	cout << "Player Strength Score:" << fight.playerSTRscore << endl;
+	cout << "Player STR Score     :" << fight.playerSTRscore << endl;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
-	cout << "Player agility       :" << fight.playerAG << endl;
-	cout << "Player Agility Score :" << fight.playerAGscore << endl;
+	cout << "Player Agility       :" << fight.playerAG << endl;
+	cout << "Player AGL Score     :" << fight.playerAGscore << endl;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
 	cout << "Player Constitution  :" << fight.playerCON << endl;
-	cout << "Player Const score   :" << fight.playerCONscore << endl;
+	cout << "Player CON Score     :" << fight.playerCONscore << endl;
+	for (int i = 0; i < 26; i++) { cout << b; };
+	cout << endl;
+	cout << "Player Intelligence  :" << fight.playerCON << endl;
+	cout << "Player INT Score     :" << fight.playerCONscore << endl;
+	for (int i = 0; i < 26; i++) { cout << b; };
+	cout << endl;
+	cout << "Player Wisedom       :" << fight.playerCON << endl;
+	cout << "Player WIS Score     :" << fight.playerCONscore << endl;
+	for (int i = 0; i < 26; i++) { cout << b; };
+	cout << endl;
+	cout << "Player Charisma      :" << fight.playerCON << endl;
+	cout << "Player CHR Score     :" << fight.playerCONscore << endl;
 
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;

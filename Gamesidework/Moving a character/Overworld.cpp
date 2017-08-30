@@ -259,7 +259,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 							fight.playerwepdmg = 4;
 							fight.playerATT += 6;
 							Inv.playerCash -= 2;
-							Inv.dagger += 1;
+							invAdd(Inv, 0);
 						}
 						else
 						{
@@ -276,7 +276,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						fight.playerwepdmg = 6;
 						fight.playerATT += 3;
 						Inv.playerCash -= 10;
-						Inv.shortSword += 1;
+						invAdd(Inv, 1);
 						}
 						else
 						{
@@ -291,7 +291,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						{
 							Inv.playerCash -= 30;
 							fight.playerwepdmg = 12;
-							Inv.Battleaxe += 1;
+							invAdd(Inv, 2);
 						}
 						else
 						{
@@ -306,7 +306,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						{
 							Inv.playerCash -= 50;
 							fight.playerwepdmg = 15;
-							Inv.Claymore += 1;
+							invAdd(Inv, 3);
 						}
 						else
 						{
@@ -341,7 +341,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						{
 							fight.playerAC = 11 + fight.playerAGscore;
 							Inv.playerCash -= 10;
-							Inv.Leather += 1;
+							invAdd(Inv, 4);
 						}
 						else
 						{
@@ -357,7 +357,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						fight.playerAGscore = Clamp(-4, 2, fight.playerAGscore);
 						fight.playerAC = 14 + fight.playerAGscore;
 						Inv.playerCash -= 50;
-						Inv.Bottlecap += 1;
+						invAdd(Inv, 5);
 						}
 						else
 						{
@@ -373,6 +373,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						fight.playerAGscore = Clamp(-4, 0, fight.playerAGscore);
 						fight.playerAC = 17;
 						Inv.playerCash -= 75;
+						invAdd(Inv, 6);
 						}
 						else
 						{
@@ -422,8 +423,8 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 				system("CLS");
 				ArenaFlavor = false;
 			}
-			findMonster(fight);
-			monsterFight(fight);
+			findMonster(fight, Inv);
+			monsterFight(fight, Inv);
 			system("pause");
 			system("CLS");
 			if (fight.playerHP <= 0)
@@ -451,7 +452,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 			break;
 		case 6:
 			displayPlayerStats(fight);
-			showInv(Inv);
+			showInvtoo(Inv);
 		}
 		
 	}

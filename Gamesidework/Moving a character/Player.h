@@ -2,6 +2,8 @@
 #include <string>
 #include "Inventory.h"
 
+
+
 struct PlayervMonster
 {
 	std::string Playername = "";
@@ -12,7 +14,7 @@ struct PlayervMonster
 	int playerwepdmg = 0;
 	int monsterwepdmg = 0;
 	
-	int statLock = 18;
+	int statLock = 22;
 	
 	
 	int playerHPMax = 0;
@@ -23,6 +25,12 @@ struct PlayervMonster
 	int playerAGscore = 0;
 	int playerCON = 8;
 	int playerCONscore = 0;
+	int playerINT = 8;
+	int playerINTscore = 0;
+	int playerWIS = 8;
+	int playerWISscore = 0;
+	int playerCHR = 8;
+	int playerCHRscore = 0;
 	int playerAC = 0;
 	int playerATT = 0;
 	int playerXP = 0;
@@ -42,8 +50,8 @@ void CharacterCreate(PlayervMonster &fight);
 void TitleScreen(PlayervMonster & fight);
 
 void Overworld(PlayervMonster & fight, Items & Inv);
-void monsterFight(PlayervMonster fight);
-
-void monsterFight(PlayervMonster fight);
+void rollAnimate(PlayervMonster fight);
+void findMonster(PlayervMonster &fight, Items &inv);
+void monsterFight(PlayervMonster fight, Items inv);
 void mathPlayerStats(PlayervMonster & fight);
 void displayPlayerStats(PlayervMonster &fight);
