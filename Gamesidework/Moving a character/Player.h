@@ -39,6 +39,5 @@ void CharacterCreate(PlayervMonster &fight);
 void TitleScreen(PlayervMonster & fight);
 void Overworld(PlayervMonster & fight);
 void monsterFight(PlayervMonster fight);
-void holdPlayerStats(PlayervMonster &fight);
-
-void tester(PlayervMonster fight);
+void mathPlayerStats(PlayervMonster & fight);
+void displayPlayerStats(PlayervMonster &fight);
