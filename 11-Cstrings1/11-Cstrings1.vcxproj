@@ -110,7 +110,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Backwords.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Piglatin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Backwords.h" />
+    <ClInclude Include="Piglatin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

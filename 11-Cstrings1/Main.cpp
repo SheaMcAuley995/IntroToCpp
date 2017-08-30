@@ -1,6 +1,8 @@
 #include <iostream>
+#include <cstring>
+#include "Backwords.h"
+#include "Piglatin.h"
 
- 
 using std::cout;
 using std::cin;
 using std::endl;
@@ -33,17 +35,17 @@ int main()
 	}*/
 
 
-	char input[80];
+	//char input[80];
 
-	cout << "3. Input a line with whitespace \n>";
-	cin.ignore(80, '\n');
-	cin.getline(input, 80);
+	//cout << "3. Input a line with whitespace \n>";
+	//cin.ignore(80, '\n');
+	//cin.getline(input, 80);
 
-	char buffer[80] = {80}
-
-
+	//char buffer[80] = {80}
 
 
+	//RunBackwords();
+	RunPigLatin();
 
 
 	system("pause");
