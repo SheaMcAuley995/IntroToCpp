@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Fighter.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Overworld.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -118,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fighter.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="Overworld.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="setColor.h" />

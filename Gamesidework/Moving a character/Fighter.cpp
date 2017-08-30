@@ -7,6 +7,7 @@
 #include<thread>
 #include "Fighter.h"
 #include "Overworld.h"
+#include <string>
 
 using std::cout;
 using std::cin;
@@ -39,7 +40,7 @@ int GenerateMonsterHit(PlayervMonster &fight)
 }
 
 
-void findMonster(PlayervMonster &fight)
+void findMonster(PlayervMonster &fight, Items &inv)
 {
 	srand(time(NULL));
 	int rollMonster = rand() % 5;
@@ -51,6 +52,7 @@ void findMonster(PlayervMonster &fight)
 		fight.monsterDP = 4;
 		fight.monsterATT = 2;
 		fight.monsterAC = 10;
+		inv.playerCash += 1;
 		break;
 	case 1:
 		fight.monstername = "Zombie";
@@ -59,6 +61,7 @@ void findMonster(PlayervMonster &fight)
 		fight.monsterDP = -1;
 		fight.monsterATT = 5;
 		fight.monsterAC = 8;
+		inv.playerCash += 3;
 		break;
 	case 2:
 		fight.monstername = "Turtle";
@@ -67,6 +70,7 @@ void findMonster(PlayervMonster &fight)
 		fight.monsterDP = 0;
 		fight.monsterATT = 1;
 		fight.monsterAC = 10;
+		inv.playerCash += 1;
 		break;
 	case 3:
 		fight.monstername = "Human Fighter";
@@ -75,6 +79,7 @@ void findMonster(PlayervMonster &fight)
 		fight.monsterDP = 2;
 		fight.monsterATT = 6;
 		fight.monsterAC = 8;
+		inv.playerCash += 3;
 		break;
 	case 4:
 		fight.monstername = "Random Blob monster";
@@ -82,12 +87,18 @@ void findMonster(PlayervMonster &fight)
 		fight.monsterwepdmg = rand() % 8 + 1;
 		fight.monsterDP = rand() % 4 + 1;
 		fight.monsterATT = rand() % 10 + 1;
+		inv.playerCash += rand() % 5;
+		
 		break;
 	}
 
 
 }
 
+void rewardGen(PlayervMonster fight, Items &inv)
+{
+
+}
 
 void monsterFight(PlayervMonster fight)
 {

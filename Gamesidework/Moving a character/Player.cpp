@@ -259,6 +259,7 @@ void displayPlayerStats(PlayervMonster &fight)
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
 	cout << "\nYour health is :" << fight.playerHP << endl;
+	cout << "XP :" << fight.playerXP;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
 	cout << "Player Strength      :" << fight.playerSTR << endl;
@@ -277,6 +278,22 @@ void displayPlayerStats(PlayervMonster &fight)
 	system("pause");
 	system("CLS");
 	
+}
+
+void checkLevelUP(PlayervMonster &fight)
+{
+	int LvLhight;
+	for (int i = fight.PlayerLvL; i < 20; i++)
+	{
+		LvLhight = i * 100;
+		if(fight.playerXP > LvLhight)
+		{
+			cout << "LEVEL UP!!" << endl;
+			system("pause");
+			system("CLS");
+
+		}
+	}
 }
 
 

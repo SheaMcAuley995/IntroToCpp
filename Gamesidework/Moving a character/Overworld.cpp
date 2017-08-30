@@ -7,6 +7,7 @@
 #include<thread>
 #include "Fighter.h"
 #include "Overworld.h"
+#include "Inventory.h"
 
 using std::cout;
 using std::cin;
@@ -126,8 +127,9 @@ void TitleScreen(PlayervMonster &fight)
 
 }
 
-void Overworld(PlayervMonster &fight)
+void Overworld(PlayervMonster &fight, Items &Inv)
 {
+	int cashTest = Inv.playerCash;
 	int userInput = 0;
 	bool MarketFlavor = true;
 	bool CantinaFlavor = true;
@@ -157,6 +159,7 @@ void Overworld(PlayervMonster &fight)
 		DelayText(1, ("3.Armory                                                                        "));
 		DelayText(1, ("4.MutationLab Co                                                                "));
 		DelayText(1, ("5.Arena                                                                         "));
+		DelayText(1, ("6.See Character sheet                                                           "));
 
 		cin >> userInput;
 		system("CLS");
@@ -177,7 +180,10 @@ void Overworld(PlayervMonster &fight)
 			}
 			DelayText(10, ("                                                                                "));
 			DelayText(10, ("                            What would you like to buy?                         "));
-			DelayText(1, ("1.Potion                  :$                                                    "));
+			DelayText(0, ("Cash $"));
+			cout << Inv.playerCash;
+			cout << endl;
+			DelayText(1, ("1.Potion                  :$10                                                  "));
 			DelayText(1, ("2.Days Ration             :$                                                    "));
 			DelayText(1, ("                          :$                                                    "));
 			DelayText(1, ("                          :$                                                    "));
@@ -199,7 +205,7 @@ void Overworld(PlayervMonster &fight)
 			while (inStore == true)
 			{
 				DelayText(1, ("                                  Armory                                        "));
-				if (ArmoryFlavor == false)
+				if (ArmoryFlavor == true)
 				{
 					DelayText(10, ("Black clouds bellow out of the top of the town armory. Many rough looking people"));
 					DelayText(10, ("Stand around the outside of the building. They all eye you suspiciously as you  "));
@@ -216,32 +222,16 @@ void Overworld(PlayervMonster &fight)
 
 				DelayText(0, ("                            What would you like to buy?                         "));
 				DelayText(0, ("Cash $"));
-				cout << fight.playerCash;
+				cout << Inv.playerCash;
 				cout << endl;
 				DelayText(0, ("--------------------------------------------------------------------------------"));
 				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-				DelayText(1, ("                                                                                "));
-
-				for (int i = 0; i < 50; i++) { cout << b; };
-				DelayText(5, ("\n1.Weapons                                                                       "));
+				DelayText(5, ("1.Weapons                                                                       "));
 				DelayText(5, ("2.Armor                                                                         "));
 				DelayText(5, ("3.Leave                                                                         "));
 				cin >> userInput;
 				system("CLS");
+				cashTest = Inv.playerCash;
 				switch (userInput)
 				{
 				case 1:
@@ -249,7 +239,7 @@ void Overworld(PlayervMonster &fight)
 					DelayText(1, ("                              Weapons                                           "));
 					DelayText(1, ("                                                                                "));
 					DelayText(1, ("Cash $"));
-					cout << fight.playerCash;
+					cout << Inv.playerCash;
 					cout << endl;
 					DelayText(1, ("--------------------------------------------------------------------------------"));
 					DelayText(1, ("                                                                                "));
@@ -263,22 +253,68 @@ void Overworld(PlayervMonster &fight)
 					switch (userInput)
 					{
 					case 1:
-						fight.playerwepdmg = 4;
-						fight.playerATT += 6;
-						fight.playerCash -= 2;
+						
+						if ((cashTest -= 2) >= 0)
+						{
+							fight.playerwepdmg = 4;
+							fight.playerATT += 6;
+							Inv.playerCash -= 2;
+							Inv.dagger += 1;
+						}
+						else
+						{
+
+							cout << "You do not have enough money for that!" << endl;
+
+							system("pause");
+							system("CLS");
+						}
 						break;
 					case 2:
+						if ((cashTest -= 10) >= 0)
+						{
 						fight.playerwepdmg = 6;
 						fight.playerATT += 3;
-						fight.playerCash -= 10;
+						Inv.playerCash -= 10;
+						Inv.shortSword += 1;
+						}
+						else
+						{
+							cout << "You do not have enough money for that!" << endl;
+
+							system("pause");
+							system("CLS");
+						}
 						break;
 					case 3:
-						fight.playerCash -= 30;
-						fight.playerwepdmg = 12;
+						if ((cashTest -= 30) >= 0)
+						{
+							Inv.playerCash -= 30;
+							fight.playerwepdmg = 12;
+							Inv.Battleaxe += 1;
+						}
+						else
+						{
+							cout << "You do not have enough money for that!" << endl;
+
+							system("pause");
+							system("CLS");
+						}
 						break;
 					case 4:
-						fight.playerCash -= 50;
-						fight.playerwepdmg = 15;
+						if ((cashTest -= 50) >= 0)
+						{
+							Inv.playerCash -= 50;
+							fight.playerwepdmg = 15;
+							Inv.Claymore += 1;
+						}
+						else
+						{
+							cout << "You do not have enough money for that!" << endl;
+
+							system("pause");
+							system("CLS");
+						}
 					}
 					break;
 				case 2:
@@ -286,7 +322,7 @@ void Overworld(PlayervMonster &fight)
 					DelayText(1, ("                                                                                "));
 					DelayText(1, ("                                                                                "));
 					DelayText(1, ("Cash $"));
-					cout << fight.playerCash;
+					cout << Inv.playerCash;
 					cout << endl;
 					DelayText(1, ("--------------------------------------------------------------------------------"));
 					DelayText(1, ("                                                                                "));
@@ -296,21 +332,55 @@ void Overworld(PlayervMonster &fight)
 					DelayText(1, ("                                                                                "));
 					cin >> userInput;
 					system("CLS");
+					cashTest = Inv.playerCash;
 					switch (userInput)
 					{
+						
 					case 1:
-						fight.playerAC = 11 + fight.playerAGscore;
-						fight.playerCash -= 10;
+						if ((cashTest -= 10) >= 0)
+						{
+							fight.playerAC = 11 + fight.playerAGscore;
+							Inv.playerCash -= 10;
+							Inv.Leather += 1;
+						}
+						else
+						{
+							cout << "You do not have enough money for that!" << endl;
+
+							system("pause");
+							system("CLS");
+						}
 						break;
 					case 2:
+						if ((cashTest -= 50) >= 0)
+						{
 						fight.playerAGscore = Clamp(-4, 2, fight.playerAGscore);
 						fight.playerAC = 14 + fight.playerAGscore;
-						fight.playerCash -= 50;
+						Inv.playerCash -= 50;
+						Inv.Bottlecap += 1;
+						}
+						else
+						{
+							cout << "You do not have enough money for that!" << endl;
+
+							system("pause");
+							system("CLS");
+						}
 						break;
 					case 3:
+						if ((cashTest -= 75) >= 0)
+						{
 						fight.playerAGscore = Clamp(-4, 0, fight.playerAGscore);
 						fight.playerAC = 17;
-						fight.playerCash -= 75;
+						Inv.playerCash -= 75;
+						}
+						else
+						{
+							cout << "You do not have enough money for that!" << endl;
+
+							system("pause");
+							system("CLS");
+						}
 						break;
 
 					}
@@ -379,8 +449,11 @@ void Overworld(PlayervMonster &fight)
 				fight.playerHP = fight.playerHPMax;
 			}
 			break;
+		case 6:
+			displayPlayerStats(fight);
+			showInv(Inv);
 		}
-
+		
 	}
 	system("pause");
 }
