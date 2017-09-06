@@ -11,7 +11,7 @@ struct PlayervMonster
 	
 	int PlayerGender;
 	int weapon;
-	int playerwepdmg = 0;
+	int playerwepdmg = 1;
 	int monsterwepdmg = 0;
 	
 	int statLock = 22;
@@ -31,7 +31,7 @@ struct PlayervMonster
 	int playerWISscore = 0;
 	int playerCHR = 8;
 	int playerCHRscore = 0;
-	int playerAC = 0;
+	int playerAC = 12;
 	int playerATT = 0;
 	int playerXP = 0;
 	int playerHands[2] = { 1, 1};
@@ -41,18 +41,24 @@ struct PlayervMonster
 	int monsterAC = 0; // block
 	int monsterHP = 0; // health
 	int monsterAP = 0; // attack
-	int monsterDP = 0; // dodge
+	int monsterAttackNum = 1;
+	//int monsterDP = 0; // dodge
 };
 
 //void setPlayerStats(PlayervMonster &fight);
-
+void ArmoryAnimation();
 void findMonster(PlayervMonster &fight, Items &inv);
+void findMonsterMED(PlayervMonster & fight, Items & inv);
+void findMonsterHARD(PlayervMonster & fight, Items & inv);
 void CharacterCreate(PlayervMonster &fight);
 void TitleScreen(PlayervMonster & fight);
-
+void GateAnimation();
 void Overworld(PlayervMonster & fight, Items & Inv);
 void rollAnimate(PlayervMonster fight);
+void CheckReward(PlayervMonster & fight, Items & inv);
 void findMonster(PlayervMonster &fight, Items &inv);
 void monsterFight(PlayervMonster fight, Items inv);
 void mathPlayerStats(PlayervMonster & fight);
 void displayPlayerStats(PlayervMonster &fight);
+
+void checkLevelUP(PlayervMonster & fight);

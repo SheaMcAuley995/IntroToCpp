@@ -141,7 +141,7 @@ void CharacterCreate(PlayervMonster &fight)
 		cout << br << endl;
 
 
-		cout << "\n\nPlease select the stat you would like to change\n \n1.STR\n2.DEX\n3.CON\n>";
+		cout << "\n\nPlease select the stat you would like to change\n \n1.STR\n2.DEX\n3.CON\n4.INT\n5.WIS\n6.CHAR\n>";
 		cin >> userinput;
 		switch (userinput){
 			case 1:
@@ -272,17 +272,17 @@ void CharacterCreate(PlayervMonster &fight)
 		if (fight.statLock < 0)
 		{
 			system("CLS");
-			fight.statLock = 18;
+			fight.statLock = 22;
 			cout << "You spent too many points!\n";
 			fight.playerSTR = 8;
 			fight.playerAG = 8;
 			fight.playerCON = 8;
 			system("pause");
 		}
-		else if (fight.statLock > 18)
+		else if (fight.statLock > 22)
 		{
 			system("CLS");
-			fight.statLock = 18;
+			fight.statLock = 22;
 			cout << "CHEATER!\n";
 			fight.playerSTR = 8;
 			fight.playerAG = 8;
@@ -366,16 +366,16 @@ void displayPlayerStats(PlayervMonster &fight)
 	cout << "Player CON Score     :" << fight.playerCONscore << endl;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
-	cout << "Player Intelligence  :" << fight.playerCON << endl;
-	cout << "Player INT Score     :" << fight.playerCONscore << endl;
+	cout << "Player Intelligence  :" << fight.playerINT << endl;
+	cout << "Player INT Score     :" << fight.playerINTscore << endl;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
-	cout << "Player Wisedom       :" << fight.playerCON << endl;
-	cout << "Player WIS Score     :" << fight.playerCONscore << endl;
+	cout << "Player Wisdom        :" << fight.playerWIS << endl;
+	cout << "Player WIS Score     :" << fight.playerWISscore << endl;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
-	cout << "Player Charisma      :" << fight.playerCON << endl;
-	cout << "Player CHR Score     :" << fight.playerCONscore << endl;
+	cout << "Player Charisma      :" << fight.playerCHR << endl;
+	cout << "Player CHR Score     :" << fight.playerCHRscore << endl;
 
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;	
@@ -390,6 +390,7 @@ void checkLevelUP(PlayervMonster &fight)
 		if(fight.playerXP > LvLhight)
 		{
 			cout << "LEVEL UP!!" << endl;
+			fight.statLock += 2 + fight.playerINTscore;
 			system("pause");
 			system("CLS");
 

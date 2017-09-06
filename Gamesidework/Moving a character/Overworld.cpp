@@ -34,6 +34,10 @@ void TitleScreen(PlayervMonster &fight)
 	DelayText(10, ("You have traveled long and far to find yourself a new home among the true humans"));
 	DelayText(10, ("The great city of Alduwin holds what remains of civilization in these           "));
 	DelayText(10, ("treacherous wastes. You stare awestuck at the grandeur that is the obsidian gate"));
+	Sleep(100);
+	system("pause");
+	system("CLS");
+	GateAnimation();
 	DelayText(10, ("The guards check your person and find a meager nothing. Not even worth extorting"));
 	DelayText(10, ("Reluctantly you walk forword and find yourself in the middle of the great hustle"));
 	DelayText(10, ("and bustle that is Alduwin, and that's when you see it. Almost as if it were    "));
@@ -139,9 +143,10 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 	char trs = 185;//╣
 	char btrs = 204;//╠
 	char Delete = 8;
-
+	
 	while (inTown == true)
 	{
+		srand(time(NULL));
 		inStore = true;
 		DelayText(1, ("                                 Alduwin                                        "));
 		DelayText(1, ("                                                                                "));
@@ -199,6 +204,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 				DelayText(1, ("                                  Armory                                        "));
 				if (ArmoryFlavor == true)
 				{
+					ArmoryAnimation();
 					DelayText(10, ("Black clouds bellow out of the top of the town armory. Many rough looking people "));
 					DelayText(10, ("Stand around the outside of the building. They all eye you suspiciously as you "));
 					DelayText(10, ("walk towards the entrance. As you walk inside you are greated by a small old man "));
@@ -250,7 +256,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						{
 							
 							Inv.playerCash -= 2;
-							invAdd(Inv, 0);
+							Inv.storeAmount[userInput - 1] += 1;
 						}
 						else
 						{
@@ -266,7 +272,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						{
 						
 						Inv.playerCash -= 10;
-						invAdd(Inv, 1);
+						Inv.storeAmount[1] += 1;
 						}
 						else
 						{
@@ -280,7 +286,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						if ((cashTest -= 30) >= 0)
 						{
 							Inv.playerCash -= 30;
-							invAdd(Inv, 2);
+							Inv.storeAmount[userInput - 1] += 1;
 						}
 						else
 						{
@@ -294,7 +300,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						if ((cashTest -= 50) >= 0)
 						{
 							Inv.playerCash -= 50;
-							invAdd(Inv, 3);
+							Inv.storeAmount[userInput - 1] += 1;
 						}
 						else
 						{
@@ -328,7 +334,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						if ((cashTest -= 10) >= 0)
 						{
 							Inv.playerCash -= 10;
-							invAdd(Inv, 4);
+							Inv.storeAmount[userInput + 3] += 1;
 						}
 						else
 						{
@@ -342,7 +348,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						if ((cashTest -= 50) >= 0)
 						{
 						Inv.playerCash -= 50;
-						invAdd(Inv, 5);
+						Inv.storeAmount[userInput + 3] += 1;
 						}
 						else
 						{
@@ -356,7 +362,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						if ((cashTest -= 75) >= 0)
 						{
 						Inv.playerCash -= 75;
-						invAdd(Inv, 6);
+						Inv.storeAmount[userInput + 3] += 1;
 						}
 						else
 						{
@@ -404,7 +410,28 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 				Sleep(100);
 				system("pause");
 				system("CLS");
+				DelayText(10, ("You look at a large billboard filled with different colors and scheduled fights "));
+				DelayText(10, ("They all seem to be segmented into three parts. Weaking level, Fighter level,   "));
+				DelayText(10, ("and Champion level.                                                             "));
 				ArenaFlavor = false;
+
+			}
+			DelayText(1, ("What fight will you be doing today?                                             "));
+			DelayText(1, ("--------------------------------------------------------------------------------"));
+			DelayText(1, ("1.WEAKLING LEAGUE                                                               "));
+			DelayText(1, ("2.FIGHTY FIGHTY HARDY WARRIORS                                                  "));
+			DelayText(1, ("3.ONLY THE TOUGHEST OF THE TOUGH                                                "));
+			cin >> userInput;
+			switch (userInput)
+			{
+			case 1:
+				findMonster(fight, Inv);
+				break;
+			case 2:
+				findMonsterMED(fight, Inv);
+				break;
+			case 3:
+				findMonsterHARD(fight, Inv);
 			}
 			findMonster(fight, Inv);
 			monsterFight(fight, Inv);
@@ -460,4 +487,225 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 		
 	}
 	system("pause");
+}
+
+void GateAnimation()
+{
+	int animate = 0;
+	
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		cout << "       .: *                ." << endl;
+		cout << "       __ .   *    .          .: *    __" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		cout << "      (())                           (())" << endl;
+		cout << "     ((()))  __          .      __  ((()))" << endl;
+		cout << "    (((())))(())     .         (())(((())))" << endl;
+		cout << "   ((((()))))())) _         _ ((()((((()))))" << endl;
+		cout << "     |____|((())))()   ,   ()(((()))|____|" << endl;
+		cout << "     |_[]_| |__|((())__A__((())|__| |_[]_|" << endl;
+		cout << "    _|    |_|[]|_|_|I-I-I-I|_|_|[]|_|    |_" << endl;
+		cout << "   |-|    |-|  |-|||-I-I-I-|||-|  |-|    |-|" << endl;
+		cout << "  (|-|    |-|  |-| |I-I-I-I| |-|  |-|    |-|)" << endl;
+		cout << " ((|-| __ |-|  |-| |-I-I-I-| |-|  |-| __ |-|))" << endl;
+		cout << " ()|-|_XX_|-|__|T|_|[T]-[T]|_|T|__|-|_XX_|-|()" << endl;
+		cout << "^~^^~^    ^~^       /     \\     ^~^    ^~^^~^" << endl;
+		cout << "  ^~^    ~^        /       \\        ^~       " << endl;
+		Sleep(1000);
+		system("CLS");
+	for (int i = 0; i < 5; i++)
+	{
+	animate = i % 5;
+	switch (animate)
+	{
+
+	case 0:
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		cout << "       .: *                ." << endl;
+		cout << "       __ .   *    .          .: *    __" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		cout << "      (())                           (())" << endl;
+		cout << "     ((()))  __          .      __  ((()))" << endl;
+		cout << "    (((())))(())     .         (())(((())))" << endl;
+		cout << "   ((((()))))())) _         _ ((()((((()))))" << endl;
+		cout << "     |____|((())))()   ,   ()(((()))|____|" << endl;
+		cout << "     |_[]_| |__|((())__A__((())|__| |_[]_|" << endl;
+		cout << "    _|    |_|[]|_|_|I-I-I-I|_|_|[]|_|    |_" << endl;
+		cout << "   |-|    |-|  |-|||-I-I-I-|||-|  |-|    |-|" << endl;
+		cout << "  (|-|    |-|  |-| |I-I-I-I| |-|  |-|    |-|)" << endl;
+		cout << " ((|-| __ |-|  |-| |-I-I-I-| |-|  |-| __ |-|))" << endl;
+		cout << " ()|-|_XX_|-|__|T|_|[T]-[T]|_|T|__|-|_XX_|-|()" << endl;
+		cout << "^~^^~^    ^~^       /     \\     ^~^    ^~^^~^" << endl;
+		cout << "  ^~^    ~^        /       \\        ^~       " << endl;
+
+		break;
+	case 1:
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		cout << "       .: .                 ." << endl;
+		cout << "       __ .   -    .          .; *    __" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		cout << "      (())                           (())" << endl;
+		cout << "     ((()))  __          *      __  ((()))" << endl;
+		cout << "    (((())))(())     .         (())(((())))" << endl;
+		cout << "   ((((()))))())) _         _ ((()((((()))))" << endl;
+		cout << "     |____|((())))()   ,   ()(((()))|____|" << endl;
+		cout << "     |_[]_| |__|((())__A__((())|__| |_[]_|" << endl;
+		cout << "    _|    |_|[]|_|_|I-I-I-I|_|_|[]|_|    |_" << endl;
+		cout << "   |-|    |-|  |-|||-I-I-I-|||-|  |-|    |-|" << endl;
+		cout << "  (|-|    |-|  |-| |I-I-I-I| |-|  |-|    |-|)" << endl;
+		cout << " ((|-| __ |-|  |-| |[T]-[T]| |-|  |-| __ |-|))" << endl;
+		cout << " ()|-|_XX_|-|__|T|_|       |_|T|__|-|_XX_|-|()" << endl;
+		cout << "^~^^~^    ^~^       /     \\     ^~^    ^~^^~^" << endl;
+		cout << "  ^~^    ~^        /       \\        ^~       " << endl;
+		break;
+	case 2:
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		cout << "       .: *                ." << endl;
+		cout << "       __ .   *    .          .: *    __" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		cout << "      (())                           (())" << endl;
+		cout << "     ((()))  __          .      __  ((()))" << endl;
+		cout << "    (((())))(())     .         (())(((())))" << endl;
+		cout << "   ((((()))))())) _         _ ((()((((()))))" << endl;
+		cout << "     |____|((())))()   ,   ()(((()))|____|" << endl;
+		cout << "     |_[]_| |__|((())__A__((())|__| |_[]_|" << endl;
+		cout << "    _|    |_|[]|_|_|I-I-I-I|_|_|[]|_|    |_" << endl;
+		cout << "   |-|    |-|  |-|||-I-I-I-|||-|  |-|    |-|" << endl;
+		cout << "  (|-|    |-|  |-| |[T]-[T]| |-|  |-|    |-|)" << endl;
+		cout << " ((|-| __ |-|  |-| |       | |-|  |-| __ |-|))" << endl;
+		cout << " ()|-|_XX_|-|__|T|_|       |_|T|__|-|_XX_|-|()" << endl;
+		cout << "^~^^~^    ^~^       /     \\     ^~^    ^~^^~^" << endl;
+		cout << "  ^~^    ~^        /       \\        ^~       " << endl;
+		break;
+	case 3:
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		cout << "       .: *                ." << endl;
+		cout << "       __ .   *    .          .: *    __" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		cout << "      (())                           (())" << endl;
+		cout << "     ((()))  __          .      __  ((()))" << endl;
+		cout << "    (((())))(())     .         (())(((())))" << endl;
+		cout << "   ((((()))))())) _         _ ((()((((()))))" << endl;
+		cout << "     |____|((())))()   ,   ()(((()))|____|" << endl;
+		cout << "     |_[]_| |__|((())__A__((())|__| |_[]_|" << endl;
+		cout << "    _|    |_|[]|_|_|I-I-I-I|_|_|[]|_|    |_" << endl;
+		cout << "   |-|    |-|  |-|||[T]-[T]|||-|  |-|    |-|" << endl;
+		cout << "  (|-|    |-|  |-| |       | |-|  |-|    |-|)" << endl;
+		cout << " ((|-| __ |-|  |-| |       | |-|  |-| __ |-|))" << endl;
+		cout << " ()|-|_XX_|-|__|T|_|       |_|T|__|-|_XX_|-|()" << endl;
+		cout << "^~^^~^    ^~^       /     \\     ^~^    ^~^^~^" << endl;
+		cout << "  ^~^    ~^        /       \\        ^~       " << endl;
+		break;
+	case 4:
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		cout << "       .: *                ." << endl;
+		cout << "       __ .   *    .          .: *    __" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+		cout << "      (())                           (())" << endl;
+		cout << "     ((()))  __          .      __  ((()))" << endl;
+		cout << "    (((())))(())     .         (())(((())))" << endl;
+		cout << "   ((((()))))())) _         _ ((()((((()))))" << endl;
+		cout << "     |____|((())))()   ,   ()(((()))|____|" << endl;
+		cout << "     |_[]_| |__|((())__A__((())|__| |_[]_|" << endl;
+		cout << "    _|    |_|[]|_|_|[T]-[T]|_|_|[]|_|    |_" << endl;
+		cout << "   |-|    |-|  |-|||       |||-|  |-|    |-|" << endl;
+		cout << "  (|-|    |-|  |-| |       | |-|  |-|    |-|)" << endl;
+		cout << " ((|-| __ |-|  |-| |       | |-|  |-| __ |-|))" << endl;
+		cout << " ()|-|_XX_|-|__|T|_|       |_|T|__|-|_XX_|-|()" << endl;
+		cout << "^~^^~^    ^~^       /     \\     ^~^    ^~^^~^" << endl;
+		cout << "  ^~^    ~^        /       \\        ^~       " << endl;
+		break;
+	}
+	
+	Sleep(200);
+	system("CLS");
+	
+}
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+cout << "       .: *                ." << endl;
+cout << "       __ .   *    .          .: *    __" << endl;
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 9);
+cout << "      (())                           (())" << endl;
+cout << "     ((()))  __          .      __  ((()))" << endl;
+cout << "    (((())))(())     .         (())(((())))" << endl;
+cout << "   ((((()))))())) _         _ ((()((((()))))" << endl;
+cout << "     |____|((())))()   ,   ()(((()))|____|" << endl;
+cout << "     |_[]_| |__|((())__A__((())|__| |_[]_|" << endl;
+cout << "    _|    |_|[]|_|_|[T]-[T]|_|_|[]|_|    |_" << endl;
+cout << "   |-|    |-|  |-|||       |||-|  |-|    |-|" << endl;
+cout << "  (|-|    |-|  |-| |       | |-|  |-|    |-|)" << endl;
+cout << " ((|-| __ |-|  |-| |       | |-|  |-| __ |-|))" << endl;
+cout << " ()|-|_XX_|-|__|T|_|       |_|T|__|-|_XX_|-|()" << endl;
+cout << "^~^^~^    ^~^       /     \\     ^~^    ^~^^~^" << endl;
+cout << "  ^~^    ~^        /       \\        ^~       " << endl;
+Sleep(2000);
+system("CLS");
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+}
+
+void ArmoryAnimation()
+{
+	int randomSketch = 0;
+	char Thick = 194;
+	char Med = 193;
+	char thin = 192;
+	for (int i = 0; i <= 25; i++)
+	{
+		randomSketch = rand() % 3 + 1;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+		cout << "                    ";
+		for (int j = 0; j < 6; j++)
+		{
+
+			if (randomSketch == 2)
+			{
+				cout << Med;
+			}
+			if (randomSketch == 3)
+			{
+				cout << Med;
+			}
+		}
+		cout << endl;
+		cout << "                  ";
+		for (int j = 0; j < 4; j++)
+		{
+			if (randomSketch == 1)
+			{
+				cout << Thick;
+			}
+			if (randomSketch == 2)
+			{
+				cout << Med;
+			}
+		}
+		cout << endl;
+		cout << "                ";
+		for (int j = 0; j < 2; j++)
+		{
+			if (randomSketch == 1)
+			{
+				cout << Thick;
+			}
+		}
+		cout << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+		cout << "                | |" << endl;
+		cout << "              __| |__" << endl;
+		cout << "             |      *|" << endl;
+		cout << "            / ______ |_   _)o(_" << endl;
+		cout << "           / |ARMORY|  \\  /(|)\\" << endl;
+		cout << "           |    __     |    N" << endl;
+		cout << "           | = (  )  * |    N" << endl;
+		cout << "           |   |  |    |    N" << endl;
+		cout << "           ````/`/`````` ^~^~~ " << endl;
+		cout << "           ^~ / /  " << endl;
+		cout << "                              " << endl;
+
+		Sleep(100);
+		if (i != 25)
+		{
+			system("CLS");
+		}
+	}
 }

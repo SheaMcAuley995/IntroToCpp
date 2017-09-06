@@ -46,163 +46,142 @@ void findMonster(PlayervMonster &fight, Items &inv)
 	int rollMonster = rand() % 5;
 	switch (rollMonster) {
 	case 0:
-		fight.monstername = "Rat";
+		fight.monstername = "Flying_rat";
 		fight.monsterHP = 5;
-		fight.monsterwepdmg = 1;
-		fight.monsterDP = 4;
-		fight.monsterATT = 2;
-		fight.monsterAC = 10;
-		inv.playerCash += 1;
+		fight.monsterwepdmg = 4;
+		fight.monsterATT = 6;
+		fight.monsterAC = 14;
 		break;
 	case 1:
-		fight.monstername = "Zombie";
-		fight.monsterHP = 22;
-		fight.monsterwepdmg = 5;
-		fight.monsterDP = -1;
-		fight.monsterATT = 5;
-		fight.monsterAC = 8;
-		inv.playerCash += 3;
+		fight.monstername = "Cat";
+		fight.monsterHP = 4;
+		fight.monsterwepdmg = 2;
+		fight.monsterATT = 0;
+		fight.monsterAC = 12;
 		break;
 	case 2:
-		fight.monstername = "Turtle";
-		fight.monsterHP = 2;
-		fight.monsterwepdmg = 3;
-		fight.monsterDP = 0;
-		fight.monsterATT = 1;
-		fight.monsterAC = 10;
-		inv.playerCash += 1;
+		fight.monstername = "Blood_Hawk";
+		fight.monsterHP = 7;
+		fight.monsterwepdmg = 6;
+		fight.monsterATT = 4;
+		fight.monsterAC = 12;
 		break;
 	case 3:
-		fight.monstername = "Human Fighter";
-		fight.monsterHP = 22;
-		fight.monsterwepdmg = 8;
-		fight.monsterDP = 2;
-		fight.monsterATT = 6;
-		fight.monsterAC = 8;
-		inv.playerCash += 3;
+		fight.monstername = "Cancerkin";
+		fight.monsterHP = 5;
+		fight.monsterwepdmg = 6;
+		fight.monsterATT = 5;
+		fight.monsterAC = 12;
 		break;
 	case 4:
-		fight.monstername = "Random Blob monster";
+		fight.monstername = "Random Blob Monster";
 		fight.monsterHP = rand() % 16 + 1;
 		fight.monsterwepdmg = rand() % 8 + 1;
-		fight.monsterDP = rand() % 4 + 1;
 		fight.monsterATT = rand() % 10 + 1;
-		inv.playerCash += rand() % 5;
 		
 		break;
 	}
 
 
 }
-void findMonsterMed(PlayervMonster &fight, Items &inv)
+
+void findMonsterMED(PlayervMonster &fight, Items &inv)
 {
 	//srand(time(NULL));
 	int rollMonster = rand() % 5;
 	switch (rollMonster) {
 	case 0:
-		fight.monstername = "Rat";
-		fight.monsterHP = 5;
-		fight.monsterwepdmg = 1;
-		fight.monsterDP = 4;
-		fight.monsterATT = 2;
-		fight.monsterAC = 10;
-		inv.playerCash += 1;
+		fight.monstername = "Ooze_child";
+		fight.monsterHP = 22;
+		fight.monsterwepdmg = 16;
+		fight.monsterATT = 3;
+		fight.monsterAC = 8;
 		break;
 	case 1:
-		fight.monstername = "Zombie";
-		fight.monsterHP = 22;
+		fight.monstername = "Lowlife_Scum";
+		fight.monsterHP = 32;
 		fight.monsterwepdmg = 5;
-		fight.monsterDP = -1;
-		fight.monsterATT = 5;
-		fight.monsterAC = 8;
-		inv.playerCash += 3;
+		fight.monsterAttackNum = 2;
+		fight.monsterATT = 4;
+		fight.monsterAC = 12;
 		break;
 	case 2:
-		fight.monstername = "Turtle";
-		fight.monsterHP = 2;
-		fight.monsterwepdmg = 3;
-		fight.monsterDP = 0;
-		fight.monsterATT = 1;
-		fight.monsterAC = 10;
-		inv.playerCash += 1;
-		break;
-	case 3:
-		fight.monstername = "Human Fighter";
-		fight.monsterHP = 22;
-		fight.monsterwepdmg = 8;
-		fight.monsterDP = 2;
-		fight.monsterATT = 6;
-		fight.monsterAC = 8;
-		inv.playerCash += 3;
-		break;
-	case 4:
-		fight.monstername = "Random Blob monster";
-		fight.monsterHP = rand() % 16 + 1;
-		fight.monsterwepdmg = rand() % 8 + 1;
-		fight.monsterDP = rand() % 4 + 1;
-		fight.monsterATT = rand() % 10 + 1;
-		inv.playerCash += rand() % 5;
-
-		break;
-	}
-
-
-}
-void findMonsterHard(PlayervMonster &fight, Items &inv)
-{
-	//srand(time(NULL));
-	int rollMonster = rand() % 5;
-	switch (rollMonster) {
-	case 0:
-		fight.monstername = "Rat";
-		fight.monsterHP = 5;
-		fight.monsterwepdmg = 1;
-		fight.monsterDP = 4;
-		fight.monsterATT = 2;
-		fight.monsterAC = 10;
-		inv.playerCash += 1;
-		break;
-	case 1:
-		fight.monstername = "Zombie";
-		fight.monsterHP = 22;
+		fight.monstername = "Death Dog";
+		fight.monsterHP = 39;
 		fight.monsterwepdmg = 5;
-		fight.monsterDP = -1;
-		fight.monsterATT = 5;
-		fight.monsterAC = 8;
-		inv.playerCash += 3;
-		break;
-	case 2:
-		fight.monstername = "Turtle";
-		fight.monsterHP = 2;
-		fight.monsterwepdmg = 3;
-		fight.monsterDP = 0;
-		fight.monsterATT = 1;
-		fight.monsterAC = 10;
-		inv.playerCash += 1;
+		fight.monsterAttackNum = 2;
+		fight.monsterATT = 4;
+		fight.monsterAC = 12;
 		break;
 	case 3:
-		fight.monstername = "Human Fighter";
-		fight.monsterHP = 22;
-		fight.monsterwepdmg = 8;
-		fight.monsterDP = 2;
-		fight.monsterATT = 6;
-		fight.monsterAC = 8;
-		inv.playerCash += 3;
+		fight.monstername = "Scrapped Robo";
+		fight.monsterHP = 33;
+		fight.monsterwepdmg = 6;
+		fight.monsterAttackNum = 2;
+		fight.monsterATT = 4;
+		fight.monsterAC = 18;
 		break;
 	case 4:
-		fight.monstername = "Random Blob monster";
-		fight.monsterHP = rand() % 16 + 1;
-		fight.monsterwepdmg = rand() % 8 + 1;
-		fight.monsterDP = rand() % 4 + 1;
-		fight.monsterATT = rand() % 10 + 1;
-		inv.playerCash += rand() % 5;
-
+		fight.monstername = "Dust Wolf";
+		fight.monsterHP = 37;
+		fight.monsterwepdmg = 12;
+		fight.monsterAttackNum = 2;
+		fight.monsterATT = 5;
+		fight.monsterAC = 14;
 		break;
 	}
 
 
 }
 
+void findMonsterHARD(PlayervMonster &fight, Items &inv)
+{
+	//srand(time(NULL));
+	int rollMonster = rand() % 5;
+	switch (rollMonster) {
+	case 0:
+		fight.monstername = "Hell Hound";
+		fight.monsterHP = 45;
+		fight.monsterwepdmg = 20;
+		fight.monsterATT = 5;
+		fight.monsterAC = 15;
+		break;
+	case 1:
+		fight.monstername = "Cross-Phased Cowman";
+		fight.monsterHP = 76;
+		fight.monsterwepdmg = 24;
+		fight.monsterATT = 6;
+		fight.monsterAC = 14;
+		break;
+	case 2:
+		fight.monstername = "Flesh Freak";
+		fight.monsterHP = 93;
+		fight.monsterwepdmg = 16;
+		fight.monsterAttackNum = 2;
+		fight.monsterATT = 7;
+		fight.monsterAC = 9;
+		break;
+	case 3:
+		fight.monstername = "Arena Champion";
+		fight.monsterHP = 37;
+		fight.monsterwepdmg = 16;
+		fight.monsterAttackNum = 3;
+		fight.monsterATT = 7;
+		fight.monsterAC = 16;
+		break;
+	case 4:
+		fight.monstername = "Rad-Dragon";
+		fight.monsterHP = 110;
+		fight.monsterwepdmg = 20;
+		fight.monsterAttackNum = 3;
+		fight.monsterATT = 7;
+		fight.monsterAC = 17;
+
+		break;
+	}
+
+
+}
 
 void monsterFight(PlayervMonster fight, Items inv)
 {
@@ -227,17 +206,15 @@ void monsterFight(PlayervMonster fight, Items inv)
 		int userInput = 0;
 		int monsterhit = GenerateMonsterHit(fight);
 		int playerHit = GenerateHit(fight);
-		cout << l;
-		for (int i = 0; i < 10; i++) { cout << b; };
-		cout << r;
-		cout << "           ";
-		cout << l;
-		for (int i = 0; i < 11; i++) { cout << b; };
-		cout << r << endl;
-		cout << p << "Your HP :" << fight.playerHP << p << "           " << p << "MonsterHP:" << fight.monsterHP << p << endl;
-		cout << "           " << bl;
-		for (int i = 0; i < 11; i++) { cout << b; };
-		cout << br;
+
+		for (int i = 0; i < 75; i++) { cout << b; };
+		
+		cout << endl;
+		
+		cout << p << "Your HP :" << fight.playerHP << p << "                                               " << p << "MonsterHP:" << fight.monsterHP << p << endl;
+		
+		for (int i = 0; i < 75; i++) { cout << b; };
+		
 		cout << endl;
 
 		DelayText(1, ("                                                                                "));
@@ -247,11 +224,11 @@ void monsterFight(PlayervMonster fight, Items inv)
 		DelayText(1, ("1.Attack                                                                        "));
 		DelayText(1, ("2.Inventory                                                                     "));
 		DelayText(1, ("3.Mutations                                                                     "));
-		DelayText(1, ("4.Talk it out                                                                   "));
+		//DelayText(1, ("4.Talk it out                                                                   "));
 		
 		cout << ">";
 		cin >> userInput;
-		rollAnimate(fight);
+		
 		switch (userInput)
 		{
 		case 1:
@@ -260,7 +237,7 @@ void monsterFight(PlayervMonster fight, Items inv)
 			DelayText(1, ("                          What weapon will you use?                             "));
 			DelayText(1, ("                                                                                "));
 			WepChoice(inv, fight);
-
+			//rollAnimate(fight);
 			if (GenerateHit(fight) > fight.monsterAC)
 			{
 				damage = GenerateDamge(fight);
@@ -281,24 +258,30 @@ void monsterFight(PlayervMonster fight, Items inv)
 		}
 		if (fight.monsterHP > 0)
 		{
-			rollAnimate(fight);
-			monsterhit = GenerateMonsterHit(fight);
-			
-			if (GenerateMonsterHit(fight) > fight.playerAC)
-			{
-				damage = GenerateMonsterDamge(fight);
-				fight.playerHP -= damage;
+			int attack = fight.monsterAttackNum;
+			//rollAnimate(fight);
 
-				if (fight.playerHP <= 0)
+			do {
+				monsterhit = GenerateMonsterHit(fight);
+
+				if (GenerateMonsterHit(fight) > fight.playerAC)
 				{
-					isAlive = false;
+					damage = GenerateMonsterDamge(fight);
+					fight.playerHP -= damage;
+
+					if (fight.playerHP <= 0)
+					{
+						isAlive = false;
+					}
+					cout << "The " << fight.monstername << " hit you for " << damage << ", You are now at :" << fight.playerHP;
 				}
-				cout << "The " << fight.monstername << " hit you for " << damage << ", You are now at :" << fight.playerHP;
-			}
-			else
-			{
-				cout << "The " << fight.monstername << " misses!" << endl;
-			}
+				else
+				{
+					cout << "The " << fight.monstername << " misses!" << endl;
+				}
+				attack--;
+				system("pause");
+			} while (attack > 0);
 		}
 		else
 		{
@@ -339,7 +322,7 @@ void rollAnimate(PlayervMonster fight)
 	char trs = 185;//╣
 	char btrs = 204;//╠
 
-	for (int i = 0; i < 40; i++)
+	for (int i = 0; i < 20; i++)
 	{
 		cout << l;
 		for (int i = 0; i < 10; i++) { cout << b; };
@@ -434,3 +417,42 @@ void rollAnimate(PlayervMonster fight)
 		
 	}
 }
+
+
+void CheckReward(PlayervMonster &fight, Items &inv, int x)
+{
+	int cash = 0;
+	int xp = 0;
+	system("CLS");
+	switch (x)
+	{
+	case 1:
+		cash = rand() % 5 + 1;
+		xp = rand() % 5 + 1;
+		cout << "YOUR PRIZE :$" << cash << endl;
+		cout << "           :" << xp << "XP" << endl;
+		fight.playerXP += xp;
+		inv.playerCash += cash;
+		break;
+	case 2:
+		cash = rand() % 15 + 5;
+		xp = rand() % 15 + 5;
+		cout << "YOUR PRIZE :$" << cash << endl;
+		cout << "           :" << xp << "XP" << endl;
+		fight.playerXP += xp;
+		inv.playerCash += cash;
+		break;
+	case 3:
+		cash = rand() % 50 + 10;
+		xp = rand() % 50 + 10;
+		cout << "YOUR PRIZE :$" << cash << endl;
+		cout << "           :" << xp << "XP" << endl;
+		fight.playerXP += xp;
+		inv.playerCash += cash;
+		break;
+	}
+	checkLevelUP(fight);
+	system("pause");
+	system("CLS");
+}
+
