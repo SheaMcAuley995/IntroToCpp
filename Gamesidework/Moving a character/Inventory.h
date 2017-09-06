@@ -9,7 +9,8 @@ struct Items
 	int playerCash = 10;
 
 	std::string wepname;
-
+	std::string handname[2] = { "left", "right" };
+	std::string equipedName[4]{ "Fists", "Fists", "Fists", "Fists" };
 	std::string Invarray[30] = { "Dagger", "Shortsword", "Battleaxe", "Claymore", "Leather", "Bottlecap", "Sleetsheet", "Potion", "Day Rations", };
 	// 0.Dagger
 	// 1.Shortsword
@@ -21,15 +22,25 @@ struct Items
 	// 7.Potion
 	// 8.Day Rations
 	// 9.Dagger
-	/*int storeAmount[30] = {1,2,1,0,4,1,0,0,0,0,0,0,0,0,0,0 ,0,0,0,0,0 ,0,0,0,0,0 ,0,0,0,0};*/
-	int storeAmount[30] = {1, 2 ,1}; 
-	int HowMuchInStore = 3;
+	/*int storeAmount[30] = {4,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0 ,0,0,0,0,0 ,0,0,0,0,0 ,0,0,0,0};*/
+	
+	int storeAmount[30] = {4, 2 ,2, 0, 1}; 
+	int HowMuchInStore = 30;
+	int equipedWep;
+	int equipedWepNum[30] = { 9, 9, 9, 9 };
+	int equipedArmor;
+
+	int Mutations[30];
 };
 
+int Clamp(int min, int max, int value);
 void FillStore(Items &inv);
+
 void invAdd(Items &inv, int x);
 void invSubtract(Items &inv, int x);
 void storeItemStats(Items &inv, PlayervMonster fight, int x);
+void handCounter(Items & inv, PlayervMonster & fight);
 void invEquip(Items & inv, PlayervMonster &fight);
+void WepChoice(Items & inv, PlayervMonster & fight);
 void invUnequip(Items &inv, int x);
 void showInvtoo(Items inv);

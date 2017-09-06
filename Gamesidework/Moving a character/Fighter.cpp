@@ -17,32 +17,32 @@ using std::endl;
 
 int GenerateDamge(PlayervMonster &fight)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	return (rand() % fight.playerwepdmg + 1) + fight.playerSTRscore;
 }
 
 int GenerateMonsterDamge(PlayervMonster &fight)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	return (rand() % fight.monsterwepdmg + 1);
 }
 
 int GenerateHit(PlayervMonster &fight)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	return (rand() % 20 + 1 + fight.playerATT);
 }
 
 int GenerateMonsterHit(PlayervMonster &fight)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	return (rand() % 20 + 1 + fight.monsterATT);
 }
 
 
 void findMonster(PlayervMonster &fight, Items &inv)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	int rollMonster = rand() % 5;
 	switch (rollMonster) {
 	case 0:
@@ -94,11 +94,115 @@ void findMonster(PlayervMonster &fight, Items &inv)
 
 
 }
-
-void rewardGen(PlayervMonster fight, Items &inv)
+void findMonsterMed(PlayervMonster &fight, Items &inv)
 {
+	//srand(time(NULL));
+	int rollMonster = rand() % 5;
+	switch (rollMonster) {
+	case 0:
+		fight.monstername = "Rat";
+		fight.monsterHP = 5;
+		fight.monsterwepdmg = 1;
+		fight.monsterDP = 4;
+		fight.monsterATT = 2;
+		fight.monsterAC = 10;
+		inv.playerCash += 1;
+		break;
+	case 1:
+		fight.monstername = "Zombie";
+		fight.monsterHP = 22;
+		fight.monsterwepdmg = 5;
+		fight.monsterDP = -1;
+		fight.monsterATT = 5;
+		fight.monsterAC = 8;
+		inv.playerCash += 3;
+		break;
+	case 2:
+		fight.monstername = "Turtle";
+		fight.monsterHP = 2;
+		fight.monsterwepdmg = 3;
+		fight.monsterDP = 0;
+		fight.monsterATT = 1;
+		fight.monsterAC = 10;
+		inv.playerCash += 1;
+		break;
+	case 3:
+		fight.monstername = "Human Fighter";
+		fight.monsterHP = 22;
+		fight.monsterwepdmg = 8;
+		fight.monsterDP = 2;
+		fight.monsterATT = 6;
+		fight.monsterAC = 8;
+		inv.playerCash += 3;
+		break;
+	case 4:
+		fight.monstername = "Random Blob monster";
+		fight.monsterHP = rand() % 16 + 1;
+		fight.monsterwepdmg = rand() % 8 + 1;
+		fight.monsterDP = rand() % 4 + 1;
+		fight.monsterATT = rand() % 10 + 1;
+		inv.playerCash += rand() % 5;
+
+		break;
+	}
+
 
 }
+void findMonsterHard(PlayervMonster &fight, Items &inv)
+{
+	//srand(time(NULL));
+	int rollMonster = rand() % 5;
+	switch (rollMonster) {
+	case 0:
+		fight.monstername = "Rat";
+		fight.monsterHP = 5;
+		fight.monsterwepdmg = 1;
+		fight.monsterDP = 4;
+		fight.monsterATT = 2;
+		fight.monsterAC = 10;
+		inv.playerCash += 1;
+		break;
+	case 1:
+		fight.monstername = "Zombie";
+		fight.monsterHP = 22;
+		fight.monsterwepdmg = 5;
+		fight.monsterDP = -1;
+		fight.monsterATT = 5;
+		fight.monsterAC = 8;
+		inv.playerCash += 3;
+		break;
+	case 2:
+		fight.monstername = "Turtle";
+		fight.monsterHP = 2;
+		fight.monsterwepdmg = 3;
+		fight.monsterDP = 0;
+		fight.monsterATT = 1;
+		fight.monsterAC = 10;
+		inv.playerCash += 1;
+		break;
+	case 3:
+		fight.monstername = "Human Fighter";
+		fight.monsterHP = 22;
+		fight.monsterwepdmg = 8;
+		fight.monsterDP = 2;
+		fight.monsterATT = 6;
+		fight.monsterAC = 8;
+		inv.playerCash += 3;
+		break;
+	case 4:
+		fight.monstername = "Random Blob monster";
+		fight.monsterHP = rand() % 16 + 1;
+		fight.monsterwepdmg = rand() % 8 + 1;
+		fight.monsterDP = rand() % 4 + 1;
+		fight.monsterATT = rand() % 10 + 1;
+		inv.playerCash += rand() % 5;
+
+		break;
+	}
+
+
+}
+
 
 void monsterFight(PlayervMonster fight, Items inv)
 {
@@ -151,6 +255,12 @@ void monsterFight(PlayervMonster fight, Items inv)
 		switch (userInput)
 		{
 		case 1:
+			DelayText(1, ("                                                                                "));
+			DelayText(1, ("                                                                                "));
+			DelayText(1, ("                          What weapon will you use?                             "));
+			DelayText(1, ("                                                                                "));
+			WepChoice(inv, fight);
+
 			if (GenerateHit(fight) > fight.monsterAC)
 			{
 				damage = GenerateDamge(fight);
@@ -217,7 +327,7 @@ void monsterFight(PlayervMonster fight, Items inv)
 
 void rollAnimate(PlayervMonster fight)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
 	int animate = 0;
 	int roll;
 	char b = 205; // ═

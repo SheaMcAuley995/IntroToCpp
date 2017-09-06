@@ -16,19 +16,21 @@ int main()
 {
 	PlayervMonster battle;
 	Items Inv;
-
-	/*for (int i = 0; i < 30; i++)
-	{
-		Inv.storeAmount[i] = i;
-	}*/
 	FillStore(Inv);
+	CharacterCreate(battle);
+	Overworld(battle, Inv);
+	
 	showInvtoo(Inv);
 	invEquip(Inv, battle);
-	system("pause");
-	//  CharacterCreate(battle); 
-	  //displayPlayerStats(battle);
+	
+	displayPlayerStats(battle);
+	showInvtoo(Inv);
+	//system("pause");
+	//system("pause");
+	
+	// displayPlayerStats(battle);
 	//TitleScreen(battle);
-	//Overworld(battle, Inv);
+	
 	
 	//setPlayerStats(battle);
 	//playerWeapon(battle);

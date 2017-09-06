@@ -13,22 +13,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-int Clamp(int min, int max, int value)
-{
-	if (value < min)
-	{
-		return min;
-	}
-	else if (value > max)
-	{
-		return max;
-	}
-	else
-	{
-		return value;
-	}
-}
-
 
 void TitleScreen(PlayervMonster &fight)
 {
@@ -43,7 +27,7 @@ void TitleScreen(PlayervMonster &fight)
 	DelayText(10, ("resources. Leaving the planet a fragile irraitated hull of what it once was. The"));
 	DelayText(10, ("planet was abandoned by the rich and powerful, Leaving only the scum and the    "));
 	DelayText(10, ("squabble. You are one of these degenerates, left to rot with the rest of the    "));
-	DelayText(10, ("planet.                                                                         "));
+	DelayText(10, ("planet. "));
 	Sleep(500);
 	system("pause");
 	system("CLS");
@@ -54,7 +38,6 @@ void TitleScreen(PlayervMonster &fight)
 	DelayText(10, ("Reluctantly you walk forword and find yourself in the middle of the great hustle"));
 	DelayText(10, ("and bustle that is Alduwin, and that's when you see it. Almost as if it were    "));
 	DelayText(10, ("divine intervention. A great stadium with a neon-lit sign...                    "));
-	DelayText(10, ("                                                                                "));
 	Sleep(500);
 	system("pause");
 	system("CLS");
@@ -78,9 +61,9 @@ void TitleScreen(PlayervMonster &fight)
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "               )  (      (            )  " << endl;
 			cout << "            ( /(  )(    ))\\  (     ( /(  " << endl;
-			cout << "            )(_))(()\\  /((_) )\\ )  )(_)) " << endl;
+			cout << "            )(_))(()\\  /((_) )\\ ) *)(_)) " << endl;
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
-			cout << "           ((_)_  ((_)(_))  _(_/( ((_)_  " << endl;
+			cout << "           ((_)_ * ((_)(_))  _(_/( ((_)_  " << endl;
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 			cout << "           / _` || '_|/ -_)| ' \\))/ _` | " << endl;
 			cout << "           \\__,_||_|  \\___||_||_| \\__,_| " << endl;
@@ -90,8 +73,8 @@ void TitleScreen(PlayervMonster &fight)
 
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 			cout << "            ( /(  )(    ))\\  (     ( /(  " << endl;
-			cout << "            )(_))(()\\  /((_) )\\ )  )(_)) " << endl;
-			cout << "           (( )   (( )( ))   ( /( (( )   " << endl;
+			cout << "            )(_))(()\\  /((_) )\\ )* )(_)) " << endl;
+			cout << "           (( )   *(( )( ))   ( /( (( )   " << endl;
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
 			cout << "           /(_\\_ \\)_\\)_/(  _/_\\( ))_(_/ " << endl;
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
@@ -99,11 +82,20 @@ void TitleScreen(PlayervMonster &fight)
 			cout << "           \\__,_||_|  \\___||_||_| \\__,_| " << endl;
 			break;
 		case 2:
-
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+			cout << "               )  (      (     *      )  " << endl;
+			cout << "            ( /(  )( *   ))\\  (     ( /(  " << endl;
+			cout << "            )(_))(()\\  /((_) )\\ )  )(_)) " << endl;
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
+			cout << "           ((_)_  ((_)(_))  _(_/( ((_)_  " << endl;
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+			cout << "           / _` || '_|/ -_)| ' \\))/ _` | " << endl;
+			cout << "           \\__,_||_|  \\___||_||_| \\__,_| " << endl;
+			break;
 		case 3:
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
-			cout << "               )  (      (            )  " << endl;
-			cout << "            ( /(  )(    ))\\  (     ( /(  " << endl;
+			cout << "                      *         )   (  )  " << endl;
+			cout << "            ( /(  )(    ))\\  (      ))   " << endl;
 			cout << "            )(_))(()\\  /((_) )\\ )  )(_)) " << endl;
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 6);
 			cout << "           ((_)_  ((_)(_))  _(_/( ((_)_  " << endl;
@@ -117,9 +109,9 @@ void TitleScreen(PlayervMonster &fight)
 	}
 
 
-	DelayText(10, ("Before you can start your life of fame and fortune you'll need to gear up for   "));
+	DelayText(10, ("Before you can start your life of fame and fortune you'll need to gear up for "));
 	DelayText(10, ("the bloody battles ahead. There are a few places you'll want to visit so you can"));
-	DelayText(10, ("buy some gear.                                                                  "));
+	DelayText(10, ("buy some gear. "));
 	Sleep(500);
 	system("pause");
 	system("CLS");
@@ -207,12 +199,12 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 				DelayText(1, ("                                  Armory                                        "));
 				if (ArmoryFlavor == true)
 				{
-					DelayText(10, ("Black clouds bellow out of the top of the town armory. Many rough looking people"));
-					DelayText(10, ("Stand around the outside of the building. They all eye you suspiciously as you  "));
-					DelayText(10, ("walk towards the entrance. As you walk inside you are greated by a small old man"));
-					DelayText(10, ("surrounded by different weapons and armor. He doesn't notice you at first so    "));
+					DelayText(10, ("Black clouds bellow out of the top of the town armory. Many rough looking people "));
+					DelayText(10, ("Stand around the outside of the building. They all eye you suspiciously as you "));
+					DelayText(10, ("walk towards the entrance. As you walk inside you are greated by a small old man "));
+					DelayText(10, ("surrounded by different weapons and armor. He doesn't notice you at first so "));
 					DelayText(10, ("you loudly clear your throat to alert him of your presence. Started he jumps up "));
-					DelayText(10, ("from his work bonking his head on a shelf, sending scraps of metal flying in all"));
+					DelayText(10, ("from his work bonking his head on a shelf, sending scraps of metal flying in all "));
 					DelayText(10, ("directions. ''OI! WHAT THE HELL DO YOU WANT?!''                                 "));
 					DelayText(10, ("                                                                                "));
 					system("pause");
@@ -256,8 +248,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						
 						if ((cashTest -= 2) >= 0)
 						{
-							fight.playerwepdmg = 4;
-							fight.playerATT += 6;
+							
 							Inv.playerCash -= 2;
 							invAdd(Inv, 0);
 						}
@@ -273,8 +264,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 					case 2:
 						if ((cashTest -= 10) >= 0)
 						{
-						fight.playerwepdmg = 6;
-						fight.playerATT += 3;
+						
 						Inv.playerCash -= 10;
 						invAdd(Inv, 1);
 						}
@@ -290,7 +280,6 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						if ((cashTest -= 30) >= 0)
 						{
 							Inv.playerCash -= 30;
-							fight.playerwepdmg = 12;
 							invAdd(Inv, 2);
 						}
 						else
@@ -305,7 +294,6 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 						if ((cashTest -= 50) >= 0)
 						{
 							Inv.playerCash -= 50;
-							fight.playerwepdmg = 15;
 							invAdd(Inv, 3);
 						}
 						else
@@ -339,7 +327,6 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 					case 1:
 						if ((cashTest -= 10) >= 0)
 						{
-							fight.playerAC = 11 + fight.playerAGscore;
 							Inv.playerCash -= 10;
 							invAdd(Inv, 4);
 						}
@@ -354,8 +341,6 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 					case 2:
 						if ((cashTest -= 50) >= 0)
 						{
-						fight.playerAGscore = Clamp(-4, 2, fight.playerAGscore);
-						fight.playerAC = 14 + fight.playerAGscore;
 						Inv.playerCash -= 50;
 						invAdd(Inv, 5);
 						}
@@ -370,8 +355,6 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 					case 3:
 						if ((cashTest -= 75) >= 0)
 						{
-						fight.playerAGscore = Clamp(-4, 0, fight.playerAGscore);
-						fight.playerAC = 17;
 						Inv.playerCash -= 75;
 						invAdd(Inv, 6);
 						}
@@ -453,6 +436,26 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 		case 6:
 			displayPlayerStats(fight);
 			showInvtoo(Inv);
+			DelayText(1, ("--------------------------------------------------------------------------------"));
+			DelayText(1, ("What would you like to do?                                                      "));
+			DelayText(1, ("1.Equip Items                                                                   "));
+			DelayText(1, ("2.Unequip Items                                                                 "));
+			DelayText(1, ("3.Check Mutations                                                               "));
+			DelayText(1, ("4.Level up                                                                      "));
+			DelayText(1, ("5.Leave                                                                         "));
+			cin >> userInput;
+			switch (userInput)
+			{
+			case 1:
+				system("CLS");
+				showInvtoo(Inv);
+				invEquip(Inv, fight);
+			case 2:
+				break;
+			case 5:
+				break;
+			}
+			system("pause");
 		}
 		
 	}

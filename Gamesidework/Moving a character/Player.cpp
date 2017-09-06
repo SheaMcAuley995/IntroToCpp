@@ -14,7 +14,7 @@ using std::cin;
 using std::endl;
 
 
-//
+
 //int Clamp(int min, int max, int value)
 //{
 //	if (value < min)
@@ -348,8 +348,10 @@ void displayPlayerStats(PlayervMonster &fight)
 	cout << "                                                                    " << endl;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
-	cout << "\nYour health is :" << fight.playerHP << endl;
-	cout << "XP :" << fight.playerXP;
+	cout << "Level " << fight.PlayerLvL << endl;
+	cout << "HP :" << fight.playerHP << endl;
+	cout << "XP :" << fight.playerXP << endl;
+	cout << "Unspent power points " << fight.statLock << endl;
 	for (int i = 0; i < 26; i++) { cout << b; };
 	cout << endl;
 	cout << "Player Strength      :" << fight.playerSTR << endl;
@@ -376,10 +378,7 @@ void displayPlayerStats(PlayervMonster &fight)
 	cout << "Player CHR Score     :" << fight.playerCONscore << endl;
 
 	for (int i = 0; i < 26; i++) { cout << b; };
-	cout << endl;
-	system("pause");
-	system("CLS");
-	
+	cout << endl;	
 }
 
 void checkLevelUP(PlayervMonster &fight)

@@ -16,7 +16,7 @@ struct PlayervMonster
 	
 	int statLock = 22;
 	
-	
+	int playerSANMax = 0;
 	int playerHPMax = 0;
 	int playerHP = 0;
 	int playerSTR = 8;
@@ -34,6 +34,7 @@ struct PlayervMonster
 	int playerAC = 0;
 	int playerATT = 0;
 	int playerXP = 0;
+	int playerHands[2] = { 1, 1};
 	int PlayerLvL = 1;
 	
 	int monsterATT = 0;
