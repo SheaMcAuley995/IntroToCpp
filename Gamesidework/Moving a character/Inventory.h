@@ -25,7 +25,7 @@ struct Items
 	// 9.Dagger
 	/*int storeAmount[30] = {4,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0 ,0,0,0,0,0 ,0,0,0,0,0 ,0,0,0,0};*/
 	
-	int storeAmount[30] = {1, 1 ,1,}; 
+	int storeAmount[30] = {}; 
 	int HowMuchInStore = 30;
 	int HowMuchInStore2 = 30;
 	int HowMuchInStore3 = 30;

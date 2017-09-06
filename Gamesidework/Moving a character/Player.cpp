@@ -8,6 +8,7 @@
 #include "Fighter.h"
 #include "Overworld.h"
 #include "Inventory.h"
+#include "Condtions.h"
 
 using std::cout;
 using std::cin;
@@ -297,7 +298,243 @@ void CharacterCreate(PlayervMonster &fight)
 	}
 	
 }
+void CharacterLevl(PlayervMonster &fight)
+{
+	int userinput;
+	int statchange = fight.statLock;
+	int screwupcount = 0;
 
+	char b = 205; // ═
+	char l = 201; // ╔
+	char r = 187; // ╗
+	char p = 186; // ║
+	char bl = 200;//╚
+	char br = 188;//╝
+	char trs = 185;//╣
+	char btrs = 204;//╠
+	char Delete = 8;
+	while (fight.statLock < 0 || fight.statLock != 0)
+	{
+		colorTextChange(2);
+		cout << l;
+		for (int i = 0; i < 31; i++) { cout << b; };
+		cout << r << endl;
+
+		cout << p << "       PLAYER     STATS        " << p << endl;
+		cout << p << "                               " << p << endl;
+		if (fight.statLock > 9)
+		{
+			cout << p << "    Stat Points Left :" << fight.statLock << "       " << p << endl;
+		}
+		else
+		{
+			cout << p << "    Stat Points Left :" << fight.statLock << "        " << p << endl;
+		}
+		cout << p << "                               " << p << endl;
+		if (fight.playerSTR > 9)
+		{
+			cout << p << "1.Strength    :" << fight.playerSTR << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "1.Strength    :" << fight.playerSTR << "               " << p << endl;
+		}
+
+		if (fight.playerAG > 9)
+		{
+			cout << p << "2.Dexterity   :" << fight.playerAG << "              " << p << endl;
+		}
+		else {
+			cout << p << "2.Dexterity   :" << fight.playerAG << "               " << p << endl;
+		}
+		if (fight.playerCON > 9)
+		{
+			cout << p << "3.Constitution:" << fight.playerCON << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "3.Constitution:" << fight.playerCON << "               " << p << endl;
+		}
+		if (fight.playerINT > 9)
+		{
+			cout << p << "4.Intelligence:" << fight.playerINT << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "4.Intelligence:" << fight.playerINT << "               " << p << endl;
+		}
+		if (fight.playerWIS > 9)
+		{
+			cout << p << "5.Wisedom     :" << fight.playerWIS << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "5.Wisedom     :" << fight.playerWIS << "               " << p << endl;
+		}
+		if (fight.playerCHR > 9)
+		{
+			cout << p << "6.Charisma    :" << fight.playerCHR << "              " << p << endl;
+		}
+		else
+		{
+			cout << p << "6.Charisma    :" << fight.playerCHR << "               " << p << endl;
+		}
+		cout << p << "                               " << p << endl;
+		cout << bl;
+		for (int i = 0; i < 31; i++) { cout << b; };
+		cout << br << endl;
+
+
+		cout << "\n\nPlease select the stat you would like to change\n \n1.STR\n2.DEX\n3.CON\n4.INT\n5.WIS\n6.CHAR\n>";
+		cin >> userinput;
+		switch (userinput) {
+		case 1:
+			cout << "\nHow many points would you like to add to your strength? \n\n>";
+			while (statchange <= 0)
+			{
+				cin >> statchange;
+				if (statchange < 0 && screwupcount == 0)
+				{
+					cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nStrength  vaule >";
+					screwupcount++;
+				}
+				else if (statchange < 0 && screwupcount > 0)
+				{
+					cout << "Agian.. Physically impossible, try again. \nStrength vaule >";
+				}
+			}
+			fight.playerSTR += statchange;
+			fight.statLock -= statchange;
+			statchange = 0;
+			screwupcount = 0;
+			break;
+		case 2:
+			cout << "\nHow many points would you like to add to your dexterity? \n>";
+			while (statchange <= 0)
+			{
+				cin >> statchange;
+				if (statchange < 0 && screwupcount == 0)
+				{
+					cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \ndexterity  vaule >";
+					screwupcount++;
+				}
+				else if (statchange < 0 && screwupcount > 0)
+				{
+					cout << "Agian.. Physically impossible, try again. \ndexterity >";
+				}
+			}
+			fight.playerAG += statchange;
+			fight.statLock -= statchange;
+			statchange = 0;
+			screwupcount = 0;
+			break;
+		case 3:
+			cout << "\nHow many points would you like to add to your Constitution? \n>";
+			while (statchange <= 0)
+			{
+				cin >> statchange;
+				if (statchange < 0 && screwupcount == 0)
+				{
+					cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nConstitution  vaule >";
+					screwupcount++;
+				}
+				else if (statchange < 0 && screwupcount > 0)
+				{
+					cout << "Agian.. Physically impossible, try again. \nConstitution vaule >";
+				}
+			}
+			fight.playerCON += statchange;
+			fight.statLock -= statchange;
+			statchange = 0;
+			screwupcount = 0;
+			break;
+		case 4:
+			cout << "\nHow many points would you like to add to your Intelligence? \n>";
+			while (statchange <= 0)
+			{
+				cin >> statchange;
+				if (statchange < 0 && screwupcount == 0)
+				{
+					cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nIntelligence  vaule >";
+					screwupcount++;
+				}
+				else if (statchange < 0 && screwupcount > 0)
+				{
+					cout << "Agian.. Physically impossible, try again. \nIntelligence vaule >";
+				}
+			}
+			fight.playerINT += statchange;
+			fight.statLock -= statchange;
+			statchange = 0;
+			screwupcount = 0;
+			break;
+		case 5:
+			cout << "\nHow many points would you like to add to your Wisedom? \n>";
+			while (statchange <= 0)
+			{
+				cin >> statchange;
+				if (statchange < 0 && screwupcount == 0)
+				{
+					cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nWisedom  vaule >";
+					screwupcount++;
+				}
+				else if (statchange < 0 && screwupcount > 0)
+				{
+					cout << "Agian.. Physically impossible, try again. \nWisedom vaule >";
+				}
+			}
+			fight.playerWIS += statchange;
+			fight.statLock -= statchange;
+			statchange = 0;
+			screwupcount = 0;
+			break;
+		case 6:
+			cout << "\nHow many points would you like to add to your Charisma? \n>";
+			while (statchange <= 0)
+			{
+				cin >> statchange;
+				if (statchange < 0 && screwupcount == 0)
+				{
+					cout << "Woah there pal you may be passive looking but that is pysically impossible, try again. \nCharisma  vaule >";
+					screwupcount++;
+				}
+				else if (statchange < 0 && screwupcount > 0)
+				{
+					cout << "Agian.. Physically impossible, try again. \nCharisma vaule >";
+				}
+			}
+			fight.playerCHR += statchange;
+			fight.statLock -= statchange;
+			statchange = 0;
+			screwupcount = 0;
+			break;
+
+
+
+		}
+
+		if (fight.statLock < 0)
+		{
+			system("CLS");
+			fight.statLock = statchange;
+			cout << "You spent too many points!\n";
+			system("pause");
+		}
+		else if (fight.statLock > statchange)
+		{
+			system("CLS");
+			fight.statLock = statchange;
+			cout << "CHEATER!\n";
+			system("pause");
+		}
+
+		mathPlayerStats(fight);
+
+
+		system("CLS");
+	}
+
+}
 
 //
 //void playerArmor(PlayervMonster &fight) 

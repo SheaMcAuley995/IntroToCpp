@@ -9,6 +9,7 @@
 #include "Overworld.h"
 #include "Inventory.h"
 
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -123,7 +124,7 @@ void TitleScreen(PlayervMonster &fight)
 
 }
 
-void Overworld(PlayervMonster &fight, Items &Inv)
+void Overworld(PlayervMonster &fight, Items &Inv,Conditions &con)
 {
 	int cashTest = Inv.playerCash;
 	int userInput = 0;
@@ -167,10 +168,10 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 			DelayText(1, ("                                  Marketplace                                   "));
 			if (MarketFlavor == true)
 			{
-				DelayText(10, ("You walk to the marketplace and find yourself surrounded with the usual rabble. "));
-				DelayText(10, ("''HEY YOU, You look like the fighting type. Hoping to make a name for yourself  "));
-				DelayText(10, ("in the arena ay?'' The voice is coming from a jolly merchant clad in many       "));
-				DelayText(10, ("different fabrics. ''Well you won't get anywhere without MY fabulous wares!     "));
+				DelayText(1, ("You walk to the marketplace and find yourself surrounded with the usual rabble. "));
+				DelayText(1, ("''HEY YOU, You look like the fighting type. Hoping to make a name for yourself  "));
+				DelayText(1, ("in the arena ay?'' The voice is coming from a jolly merchant clad in many       "));
+				DelayText(1, ("different fabrics. ''Well you won't get anywhere without MY fabulous wares!     "));
 				system("pause");
 				system("CLS");
 				MarketFlavor = false;
@@ -181,22 +182,29 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 			cout << Inv.playerCash;
 			cout << endl;
 			DelayText(1, ("1.Potion                  :$10                                                  "));
-			DelayText(1, ("2.Days Ration             :$                                                    "));
-			DelayText(1, ("                          :$                                                    "));
-			DelayText(1, ("                          :$                                                    "));
-			DelayText(1, ("5.Leave                                                                         "));
+			DelayText(1, ("2.Leave                                                                         "));
 			cin >> userInput;
 			system("CLS");
 			break;
 		case 2:
 			DelayText(1, ("                                  Cantina                                       "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
+			DelayText(1, ("                                                                                "));
+			DelayText(1, ("1.Heal                                                                          "));
+			DelayText(1, ("2.Leave                                                                         "));
+			cin >> userInput;
+			if (userInput == 1)
+			{
+				fight.playerHP = fight.playerHPMax;
+				cout << "You heal to " << fight.playerHP << endl;
+				system("pause");
+				system("CLS");
+			}
+			else
+			{
+				cout << "You leave and go back to town.." << endl;
+				system("pause");
+				system("CLS");
+			}
 			break;
 		case 3:
 			while (inStore == true)
@@ -387,15 +395,72 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 
 			break;
 		case 4:
+			if (MutationLabFlavor == true)
+			{
+				DelayText(1, ("                                  MutationLab Co                                "));
+				DelayText(10, ("                                                                                "));
+				DelayText(10, ("                                                                                "));
+				DelayText(10, ("                                                                                "));
+				DelayText(10, ("Before you, you see a strange green lab with ooze flowing out the side. Many    "));
+				DelayText(10, ("people come here to get an edge in the arena. When you walk inside you see the  "));
+				DelayText(10, ("horrors of mutation taking hold of many arena fighters. Tumors, extra arms,     "));
+				DelayText(10, ("a chicken growing out of the side of someone's head..                           "));
+				DelayText(10, ("Its amazing                                                                     "));
+				Sleep(100);
+				system("pause");
+				system("CLS");
+			}
 			DelayText(1, ("                                  MutationLab Co                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
-			DelayText(10, ("                                                                                "));
+			DelayText(1, ("                                                                                "));
+			DelayText(1, ("                               What would you like to do?                       "));
+			DelayText(1, ("                                                                                "));
+			DelayText(1, ("                                                                                "));
+			DelayText(1, ("1.MUTATE    $25                                                                 "));
+			DelayText(1, ("2.Leave                                                                         "));
+			cin >> userInput;
+			if (userInput == 1)
+			{
+				if (Inv.playerCash < 25)
+				{
+					int mutation = rand() % 5 + 1;
+
+					switch (mutation)
+					{
+					case 1:
+						cout << "Your muscles rapidly grow in size (+2 STR)" << endl;
+						fight.playerSTR += 2;
+						break;
+					case 2:
+						cout << "Literal fire is spraying out of your eyes. It hurts but the pain is worth it (Add fire damage)" << endl;
+						con.addFire = true;
+						break;
+					case 3:
+						cout << "You are growing green... so that's kind of cool (add radiation damage) " << endl;
+						con.addRadiation = true;
+						break;
+					case 4:
+						cout << "You start sweating literal sickness. Not sure how that works but I'm sure no one will love you now (add poison damage) " << endl;
+						con.addPoison = true;
+						break;
+					case 5:
+						cout << "The world slows down around you.. It appears you have gained heightened reflexes (+2 DEX)" << endl;
+						fight.playerAGscore = +2;
+						break;
+					}
+				}
+				else
+				{
+					cout << "you don't have enough money" << endl;
+				}
+			}
+			else
+			{
+				cout << "You leave back to town.." << endl;
+				Sleep(100);
+				system("pause");
+				system("CLS");
+			}
+			
 			break;
 		case 5:
 			DelayText(1, ("                                  Arena                                         "));
@@ -428,13 +493,26 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 				findMonster(fight, Inv);
 				break;
 			case 2:
-				findMonsterMED(fight, Inv);
+				findMonsterMED(fight, Inv, con);
 				break;
 			case 3:
-				findMonsterHARD(fight, Inv);
+				findMonsterHARD(fight, Inv, con);
 			}
 			findMonster(fight, Inv);
-			monsterFight(fight, Inv);
+			monsterFight(fight, Inv, con);
+			switch (userInput)
+			{
+			case 1:
+				CheckReward(fight, Inv, 1);
+				break;
+			case 2:
+				CheckReward(fight, Inv, 2);
+				break;
+			case 3:
+				CheckReward(fight, Inv, 3);
+				break;
+			}
+			
 			system("pause");
 			system("CLS");
 			if (fight.playerHP <= 0)
@@ -455,10 +533,7 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 				system("pause");
 
 			}
-			else
-			{
-				fight.playerHP = fight.playerHPMax;
-			}
+
 			break;
 		case 6:
 			displayPlayerStats(fight);
@@ -466,10 +541,8 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 			DelayText(1, ("--------------------------------------------------------------------------------"));
 			DelayText(1, ("What would you like to do?                                                      "));
 			DelayText(1, ("1.Equip Items                                                                   "));
-			DelayText(1, ("2.Unequip Items                                                                 "));
-			DelayText(1, ("3.Check Mutations                                                               "));
-			DelayText(1, ("4.Level up                                                                      "));
-			DelayText(1, ("5.Leave                                                                         "));
+			DelayText(1, ("2.Level up                                                                      "));
+			DelayText(1, ("3.Leave                                                                         "));
 			cin >> userInput;
 			switch (userInput)
 			{
@@ -478,8 +551,9 @@ void Overworld(PlayervMonster &fight, Items &Inv)
 				showInvtoo(Inv);
 				invEquip(Inv, fight);
 			case 2:
+				CharacterLevl(fight);
 				break;
-			case 5:
+			case 3:
 				break;
 			}
 			system("pause");

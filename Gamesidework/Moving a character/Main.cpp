@@ -8,6 +8,7 @@
 #include "Fighter.h"
 #include "Overworld.h"
 #include "Inventory.h"
+#include "Condtions.h"
 using namespace std;
 
 
@@ -16,10 +17,10 @@ int main()
 {
 	PlayervMonster battle;
 	Items Inv;
-
+	Conditions con;
 	FillStore(Inv);
 	CharacterCreate(battle);
 	TitleScreen(battle);
-	Overworld(battle, Inv);
+	Overworld(battle, Inv, con);
 	return 0;
 }

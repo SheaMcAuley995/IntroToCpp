@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Textbased", "Textbased\Textbased.vcxproj", "{4EDC5EEC-912D-48FB-8A28-E8259A49998B}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PossiblyRoguelike", "PossiblyRoguelike\PossiblyRoguelike.vcxproj", "{110C6386-128E-41C2-9229-99F2513D5118}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Moving a character", "Moving a character\Moving a character.vcxproj", "{C45C9C87-3AA3-4764-90D9-DC3AD0B307E0}"
 EndProject
 Global
@@ -17,22 +13,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Debug|x64.ActiveCfg = Debug|x64
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Debug|x64.Build.0 = Debug|x64
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Debug|x86.ActiveCfg = Debug|Win32
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Debug|x86.Build.0 = Debug|Win32
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Release|x64.ActiveCfg = Release|x64
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Release|x64.Build.0 = Release|x64
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Release|x86.ActiveCfg = Release|Win32
-		{4EDC5EEC-912D-48FB-8A28-E8259A49998B}.Release|x86.Build.0 = Release|Win32
-		{110C6386-128E-41C2-9229-99F2513D5118}.Debug|x64.ActiveCfg = Debug|x64
-		{110C6386-128E-41C2-9229-99F2513D5118}.Debug|x64.Build.0 = Debug|x64
-		{110C6386-128E-41C2-9229-99F2513D5118}.Debug|x86.ActiveCfg = Debug|Win32
-		{110C6386-128E-41C2-9229-99F2513D5118}.Debug|x86.Build.0 = Debug|Win32
-		{110C6386-128E-41C2-9229-99F2513D5118}.Release|x64.ActiveCfg = Release|x64
-		{110C6386-128E-41C2-9229-99F2513D5118}.Release|x64.Build.0 = Release|x64
-		{110C6386-128E-41C2-9229-99F2513D5118}.Release|x86.ActiveCfg = Release|Win32
-		{110C6386-128E-41C2-9229-99F2513D5118}.Release|x86.Build.0 = Release|Win32
 		{C45C9C87-3AA3-4764-90D9-DC3AD0B307E0}.Debug|x64.ActiveCfg = Debug|x64
 		{C45C9C87-3AA3-4764-90D9-DC3AD0B307E0}.Debug|x64.Build.0 = Debug|x64
 		{C45C9C87-3AA3-4764-90D9-DC3AD0B307E0}.Debug|x86.ActiveCfg = Debug|Win32

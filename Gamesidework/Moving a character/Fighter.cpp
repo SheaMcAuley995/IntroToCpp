@@ -8,6 +8,7 @@
 #include "Fighter.h"
 #include "Overworld.h"
 #include <string>
+#include "Condtions.h"
 
 using std::cout;
 using std::cin;
@@ -17,7 +18,7 @@ using std::endl;
 
 int GenerateDamge(PlayervMonster &fight)
 {
-	//srand(time(NULL));
+
 	return (rand() % fight.playerwepdmg + 1) + fight.playerSTRscore;
 }
 
@@ -29,7 +30,7 @@ int GenerateMonsterDamge(PlayervMonster &fight)
 
 int GenerateHit(PlayervMonster &fight)
 {
-	//srand(time(NULL));
+	
 	return (rand() % 20 + 1 + fight.playerATT);
 }
 
@@ -85,7 +86,7 @@ void findMonster(PlayervMonster &fight, Items &inv)
 
 }
 
-void findMonsterMED(PlayervMonster &fight, Items &inv)
+void findMonsterMED(PlayervMonster &fight, Items &inv, Conditions &con)
 {
 	//srand(time(NULL));
 	int rollMonster = rand() % 5;
@@ -96,6 +97,9 @@ void findMonsterMED(PlayervMonster &fight, Items &inv)
 		fight.monsterwepdmg = 16;
 		fight.monsterATT = 3;
 		fight.monsterAC = 8;
+		fight.monsterConAttackNum = 1;
+		fight.monsterConAttack = 1;
+		con.addPoisonM = true;
 		break;
 	case 1:
 		fight.monstername = "Lowlife_Scum";
@@ -104,6 +108,7 @@ void findMonsterMED(PlayervMonster &fight, Items &inv)
 		fight.monsterAttackNum = 2;
 		fight.monsterATT = 4;
 		fight.monsterAC = 12;
+
 		break;
 	case 2:
 		fight.monstername = "Death Dog";
@@ -112,6 +117,7 @@ void findMonsterMED(PlayervMonster &fight, Items &inv)
 		fight.monsterAttackNum = 2;
 		fight.monsterATT = 4;
 		fight.monsterAC = 12;
+
 		break;
 	case 3:
 		fight.monstername = "Scrapped Robo";
@@ -134,7 +140,7 @@ void findMonsterMED(PlayervMonster &fight, Items &inv)
 
 }
 
-void findMonsterHARD(PlayervMonster &fight, Items &inv)
+void findMonsterHARD(PlayervMonster &fight, Items &inv, Conditions &con)
 {
 	//srand(time(NULL));
 	int rollMonster = rand() % 5;
@@ -183,9 +189,12 @@ void findMonsterHARD(PlayervMonster &fight, Items &inv)
 
 }
 
-void monsterFight(PlayervMonster fight, Items inv)
+void monsterFight(PlayervMonster fight, Items inv,Conditions con)
 {
+	
 	int damage;
+	int Conhit = rand() % 20 + 1 + fight.playerWIS;
+	int ConhitM = rand() % 20 + 1 + fight.monsterConAttack;
 	char b = 205; // ═
 	char l = 201; // ╔
 	char r = 187; // ╗
@@ -203,6 +212,7 @@ void monsterFight(PlayervMonster fight, Items inv)
 	bool isAlive = true;
 	while (isAlive == true)
 	{
+		srand(time(NULL));
 		int userInput = 0;
 		int monsterhit = GenerateMonsterHit(fight);
 		int playerHit = GenerateHit(fight);
@@ -222,9 +232,7 @@ void monsterFight(PlayervMonster fight, Items inv)
 		DelayText(1, ("                          What will you do?                                     "));
 		DelayText(1, ("                                                                                "));
 		DelayText(1, ("1.Attack                                                                        "));
-		DelayText(1, ("2.Inventory                                                                     "));
-		DelayText(1, ("3.Mutations                                                                     "));
-		//DelayText(1, ("4.Talk it out                                                                   "));
+		DelayText(1, ("2.Use Potion                                                                    "));
 		
 		cout << ">";
 		cin >> userInput;
@@ -240,26 +248,79 @@ void monsterFight(PlayervMonster fight, Items inv)
 			//rollAnimate(fight);
 			if (GenerateHit(fight) > fight.monsterAC)
 			{
-				damage = GenerateDamge(fight);
-				fight.monsterHP -= damage;
+				if (con.addFire == true)
+				{
+					int firedmg = conFire(fight);
+					damage = GenerateDamge(fight);
+					fight.monsterHP -= damage;
+					fight.monsterHP -= firedmg;
+					cout << "You hit the " << fight.monstername << "for " << damage << " and ";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+					cout << firedmg << " fire damage ";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+					cout <<" the " << fight.monstername << " is now at :" << fight.monsterHP << endl;
+				}
+				else
+				{
+					damage = GenerateDamge(fight);
+					fight.monsterHP -= damage;
+					cout << "You hit the " << fight.monstername << "for " << damage << ", the " << fight.monstername << " is now at :" << fight.monsterHP << endl;
+				}
+				if (con.addPoison == true)
+				{
+					bool alreadyPoison = false;
+					
+					if (Conhit > fight.monsterAC && alreadyPoison != true)
+					{
+						conPoison(fight, 2);
+						alreadyPoison = true;
+					}
+				}
+				
+				if (con.addShock == true)
+				{
+					bool alreadyShock = false;
+					if (Conhit > fight.monsterAC || alreadyShock == true)
+					{
+						conShock(fight);
+						conShock(fight);
+					}
+				}
+				if (con.addRadiation == true)
+				{
+					conRadiation(fight, 2);
+				}
+				
 				if (fight.monsterHP <= 0)
 				{
 					isAlive = false;
 				}
-				cout << "You hit the " << fight.monstername << "for " << damage << ", the " << fight.monstername << " is now at :" << fight.monsterHP << endl;
+				
 			}
 			else
 			{
 				cout << "You miss!" << endl;
 			}
+			
 			system("pause");
 			system("CLS");
 			break;
+		case 2:
+			if (inv.storeAmount[7] > 0)
+			{
+				inv.storeAmount[7] -= 1;
+				fight.playerHP += rand() % 15 + 1;
+				break;
+			}
+			else
+			{
+				cout << "Not enough potions" << endl;
+				break;
+			}
 		}
 		if (fight.monsterHP > 0)
 		{
 			int attack = fight.monsterAttackNum;
-			//rollAnimate(fight);
 
 			do {
 				monsterhit = GenerateMonsterHit(fight);
@@ -282,6 +343,43 @@ void monsterFight(PlayervMonster fight, Items inv)
 				attack--;
 				system("pause");
 			} while (attack > 0);
+
+			do {
+				if (con.addFireM == true)
+				{
+					int firedmgM = conFire(fight);
+					fight.monsterHP -= damage;
+					fight.monsterHP -= firedmgM;
+					cout << "The " << fight.monstername << " hit you for ";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+					cout << firedmgM << " fire damage ";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+					cout << " you are now at " << fight.playerHP << endl;
+				}
+				if (con.addPoisonM == true)
+				{
+					bool alreadyPoison = false;
+
+					if (Conhit > fight.playerResistance && alreadyPoison != true)
+					{
+						conPoison(fight, 1);
+						alreadyPoison = true;
+					}
+				}
+
+				if (con.addShockM == true)
+				{
+					bool alreadyShockM = false;
+					if (Conhit > fight.playerResistance || alreadyShockM == true)
+					{
+						conShock(fight);
+					}
+				}
+				if (con.addRadiationM == true)
+				{
+					conRadiation(fight, 1);
+				}
+			} while (fight.monsterConAttackNum > 0);
 		}
 		else
 		{

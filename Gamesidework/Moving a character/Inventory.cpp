@@ -250,7 +250,7 @@ void invEquip(Items &inv, PlayervMonster &fight)
 		cout << ">";
 		choice = 0;
 		cin >> choice;
-		
+
 		//if (fight.playerHands[choice - 1] <= 0 || choice > 3)
 		//{
 		//	system("CLS");
@@ -261,99 +261,141 @@ void invEquip(Items &inv, PlayervMonster &fight)
 
 		if (fight.playerHands[choice - 1] >= 0)
 		{
+
+			system("CLS");
+			//for (int i = 0; i < 4; i++)
+			//{
+			//	if (inv.storeAmount[i] > 0)
+			//	{
+			//		LocateItem[storeNum] = i;
+			//		storeNum++;
+			//	}	
+			//inv.equipedWepNum[choice] =
+			//	
+			//}
+			//showInvtoo(inv);
 			
-				system("CLS");
-				//for (int i = 0; i < 4; i++)
-				//{
-				//	if (inv.storeAmount[i] > 0)
-				//	{
-				//		LocateItem[storeNum] = i;
-				//		storeNum++;
-				//	}	
-				//inv.equipedWepNum[choice] =
-				//	
+			cout << "What weapon would you like to equip to your hand?" << endl;
+
+			for (int i = 0; i < 3; i++)
+			{
+				/*if (inv.storeAmount[i] > 0)
+				{*/
+				LocateItem[storeNum] = i;
+				storeNum++;
+
+				cout << storeNum << ". " << inv.Invarray[i] << "          Qty." << inv.storeAmount[i] << endl;
+
 				//}
-				//showInvtoo(inv);
-				int storeNum = 0;
-				cout << "What weapon would you like to equip to your hand?" << endl;
-				
-				for (int i = 0; i < 3; i++)
+
+			}
+			cout << ">";
+			cin >> userInput;
+			switch (userInput)
+			{
+			case 1:
+				inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] += 1;
+				inv.equipedWepNum[fight.playerHands[choice - 1] - 1] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
+				storeItemStats(inv, fight, LocateItem[userInput - 1]);
+				inv.storeAmount[LocateItem[userInput - 1]] -= 1;
+				inv.equipedName[choice - 1] = inv.wepname;
+				system("CLS");
+				break;
+			case 2:
+				inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] += 1;
+				inv.equipedWepNum[fight.playerHands[choice - 1] - 1] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
+				storeItemStats(inv, fight, LocateItem[userInput - 1]);
+				inv.storeAmount[LocateItem[userInput - 1]] -= 1;
+				inv.equipedName[choice - 1] = inv.wepname;
+				system("CLS");
+				break;
+			case 3:
+				inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] += 1;
+				inv.equipedWepNum[fight.playerHands[choice - 1] - 1] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
+				storeItemStats(inv, fight, LocateItem[userInput - 1]);
+				inv.storeAmount[LocateItem[userInput - 1]] -= 1;
+				inv.equipedName[choice - 1] = inv.wepname;
+				system("CLS");
+				break;
+			case 4:
+				inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] += 1;
+				inv.equipedWepNum[fight.playerHands[choice - 1] - 1] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
+				storeItemStats(inv, fight, LocateItem[userInput - 1]);
+				inv.storeAmount[LocateItem[userInput - 1]] -= 1;
+				inv.equipedName[choice - 1] = inv.wepname;
+				system("CLS");
+				break;
+
+			}
+			for (int k = 0; k < 5; k++)
+			{
+				if (inv.equipedWepNum[k] == 2 || inv.equipedWepNum[k] == 3)
 				{
-					/*if (inv.storeAmount[i] > 0)
-					{*/
-						LocateItem[storeNum] = i;
-						storeNum++;
 
-						cout << storeNum << ". " << inv.Invarray[i] << "          Qty." << inv.storeAmount[i] << endl;
-
-					//}
-
+					fight.playerHands[0] -= 1;
+					fight.playerHands[1] -= 1;
+					isTwohanded = true;
+					cout << "you epuiped the " << inv.equipedName[choice - 1] << " Two both your hands" << endl;
 				}
-				cout << ">";
-				cin >> userInput;
-				switch (userInput)
-				{
-				case 1:
-					inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] += 1;
-					inv.equipedWepNum[fight.playerHands[choice - 1] -1 ] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
-					storeItemStats(inv, fight, LocateItem[userInput - 1]);
-					inv.storeAmount[LocateItem[userInput - 1]] -= 1;
-					inv.equipedName[choice - 1] = inv.wepname;
-					system("CLS");
-					break;
-				case 2:
-					inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] += 1;
-					inv.equipedWepNum[fight.playerHands[choice - 1] -1] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
-					storeItemStats(inv, fight, LocateItem[userInput - 1]);
-					inv.storeAmount[LocateItem[userInput - 1]] -= 1;
-					inv.equipedName[choice - 1] = inv.wepname;
-					system("CLS");
-					break;
-				case 3:
-					inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] +=1;
-					inv.equipedWepNum[fight.playerHands[choice - 1] -1] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
-					storeItemStats(inv, fight, LocateItem[userInput - 1]);
-					inv.storeAmount[LocateItem[userInput - 1]] -= 1;
-					inv.equipedName[choice - 1] = inv.wepname;
-					system("CLS");
-					break;
-				case 4:
-					inv.storeAmount[inv.equipedWepNum[fight.playerHands[choice - 1]]] += 1;
-					inv.equipedWepNum[fight.playerHands[choice - 1] -1] = invEquipWep(inv, fight, LocateItem[userInput - 1]);
-					storeItemStats(inv, fight, LocateItem[userInput - 1]);
-					inv.storeAmount[LocateItem[userInput - 1]] -= 1;
-					inv.equipedName[choice - 1] = inv.wepname;
-					system("CLS");
-					break;
+			}
+			if (isTwohanded == false)
+			{
+				fight.playerHands[choice - 1] -= 1;
+				cout << "you epuiped the " << inv.equipedName[choice - 1] << " in your " << inv.handname[choice - 1] << " hand" << endl;
+			}
 
-				}
-				for (int k = 0; k < 5; k++)
-				{
-					if (inv.equipedWepNum[k] == 2 || inv.equipedWepNum[k] == 3)
-					{
-						
-						fight.playerHands[0] -= 1;
-						fight.playerHands[1] -= 1;
-						isTwohanded = true;
-						cout << "you epuiped the " << inv.equipedName[choice - 1] << " Two both your hands" << endl;
-					}
-				}
-				if (isTwohanded == false)
-				{
-					fight.playerHands[choice - 1] -= 1;
-					cout << "you epuiped the " << inv.equipedName[choice - 1] << " in your " << inv.handname[choice - 1] << " hand" << endl;
-				}
-				
-			
+	case  2:
+		DelayText(1, ("                              Armor                                             "));
+		DelayText(1, ("--------------------------------------------------------------------------------"));
+		DelayText(1, ("                                                                                "));
+		DelayText(1, ("1.Leather                                                                       "));
+		DelayText(1, ("2.Bottlecap                                                                     "));
+		DelayText(1, ("3.SleetSheet                                                                    "));
+		DelayText(1, ("                                                                                "));
+		cin >> userInput;
+		system("CLS");
 
+		switch (userInput)
+		{
+
+		case 1:
+			if (inv.storeAmount[4] > 0)
+			{
+				fight.playerAC = 11 + fight.playerAG;
+				system("pause");
+				system("CLS");
+
+				break;
+		case 2:
+			if (inv.storeAmount[5] > 0)
+			{
+				fight.playerAC = 13 + Clamp(-4, 2, fight.playerAG);
+				system("pause");
+				system("CLS");
+
+				break;
+				break;
+		case 3:
+			if (inv.storeAmount[6] > 0)
+			{
+				fight.playerAC = 17;
+				system("pause");
+				system("CLS");
+
+				break;
+			}
+
+			}
+			}
+		}
 		}
 	}
 }
-		
 
 
 void WepChoice(Items &inv, PlayervMonster &fight)
 {
+	
 	
 	int LocateItem[4];
 	int userInput = 0;

@@ -3,6 +3,18 @@
 #include "Inventory.h"
 
 
+struct Conditions
+{
+	bool addFire = false;
+	bool addPoison = false;
+	bool addShock = false;
+	bool addRadiation = false;
+	bool addFireM = false;
+	bool addPoisonM = false;
+	bool addShockM = false;
+	bool addRadiationM = false;
+
+};
 
 struct PlayervMonster
 {
@@ -31,6 +43,7 @@ struct PlayervMonster
 	int playerWISscore = 0;
 	int playerCHR = 8;
 	int playerCHRscore = 0;
+	int playerResistance = playerWISscore + 10;
 	int playerAC = 12;
 	int playerATT = 0;
 	int playerXP = 0;
@@ -42,23 +55,34 @@ struct PlayervMonster
 	int monsterHP = 0; // health
 	int monsterAP = 0; // attack
 	int monsterAttackNum = 1;
-	//int monsterDP = 0; // dodge
+	int monsterConAttackNum = 0;
+	int monsterConAttack = 0;
 };
 
 //void setPlayerStats(PlayervMonster &fight);
 void ArmoryAnimation();
 void findMonster(PlayervMonster &fight, Items &inv);
-void findMonsterMED(PlayervMonster & fight, Items & inv);
-void findMonsterHARD(PlayervMonster & fight, Items & inv);
+void findMonsterMED(PlayervMonster & fight, Items & inv, Conditions &con);
+void findMonsterHARD(PlayervMonster & fight, Items & inv, Conditions &con);
+void monsterFight(PlayervMonster fight, Items inv, Conditions con);
 void CharacterCreate(PlayervMonster &fight);
-void TitleScreen(PlayervMonster & fight);
+void TitleScreen(PlayervMonster &fight);
 void GateAnimation();
-void Overworld(PlayervMonster & fight, Items & Inv);
+void Overworld(PlayervMonster & fight, Items & Inv, Conditions &con);
 void rollAnimate(PlayervMonster fight);
-void CheckReward(PlayervMonster & fight, Items & inv);
+void CheckReward(PlayervMonster & fight, Items & inv, int x);
 void findMonster(PlayervMonster &fight, Items &inv);
-void monsterFight(PlayervMonster fight, Items inv);
+void monsterFight(PlayervMonster fight, Items inv, Conditions con);
 void mathPlayerStats(PlayervMonster & fight);
 void displayPlayerStats(PlayervMonster &fight);
-
+void CharacterLevl(PlayervMonster &fight);
 void checkLevelUP(PlayervMonster & fight);
+
+int conFire(PlayervMonster & fight);
+void conPoison(PlayervMonster & fight, int x);
+bool conShock(PlayervMonster & fight);
+void conRadiation(PlayervMonster & fight, int x);
+void resetConditions(PlayervMonster &fight, Conditions &con);
+
+
+
