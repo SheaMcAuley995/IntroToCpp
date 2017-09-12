@@ -15,7 +15,6 @@ using namespace std;
 
 int conFire(PlayervMonster &fight)
 {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 	int dmg = rand() % 8 + 1;
 	
 	return dmg;
@@ -52,6 +51,7 @@ bool conShock(PlayervMonster &fight)
 		cout << "Shocked!" << endl;
 		return true;
 	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
 	return false;
 }
 void conRadiation(PlayervMonster &fight, int x)
@@ -80,6 +80,7 @@ void conRadiation(PlayervMonster &fight, int x)
 		cout << "The radiation weakens all the " << fight.monstername << "'s stats.." << endl;
 		cout << dmg << " radiation damage.." << endl;
 	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
 }
 
 void resetConditions(PlayervMonster &fight,Conditions &con)

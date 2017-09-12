@@ -43,7 +43,7 @@ int GenerateMonsterHit(PlayervMonster &fight)
 
 void findMonster(PlayervMonster &fight, Items &inv)
 {
-	//srand(time(NULL));
+	srand(time(NULL));
 	int rollMonster = rand() % 5;
 	switch (rollMonster) {
 	case 0:
@@ -88,7 +88,7 @@ void findMonster(PlayervMonster &fight, Items &inv)
 
 void findMonsterMED(PlayervMonster &fight, Items &inv, Conditions &con)
 {
-	//srand(time(NULL));
+	srand(time(NULL));
 	int rollMonster = rand() % 5;
 	switch (rollMonster) {
 	case 0:
@@ -142,8 +142,9 @@ void findMonsterMED(PlayervMonster &fight, Items &inv, Conditions &con)
 
 void findMonsterHARD(PlayervMonster &fight, Items &inv, Conditions &con)
 {
-	//srand(time(NULL));
-	int rollMonster = rand() % 5;
+	srand(time(NULL));
+	/*int rollMonster = rand() % 5;*/
+	int rollMonster = 4;
 	switch (rollMonster) {
 	case 0:
 		fight.monstername = "Hell Hound";
@@ -151,6 +152,7 @@ void findMonsterHARD(PlayervMonster &fight, Items &inv, Conditions &con)
 		fight.monsterwepdmg = 20;
 		fight.monsterATT = 5;
 		fight.monsterAC = 15;
+		con.addFireM = true;
 		break;
 	case 1:
 		fight.monstername = "Cross-Phased Cowman";
@@ -166,6 +168,7 @@ void findMonsterHARD(PlayervMonster &fight, Items &inv, Conditions &con)
 		fight.monsterAttackNum = 2;
 		fight.monsterATT = 7;
 		fight.monsterAC = 9;
+		con.addPoisonM = true;
 		break;
 	case 3:
 		fight.monstername = "Arena Champion";
@@ -182,31 +185,25 @@ void findMonsterHARD(PlayervMonster &fight, Items &inv, Conditions &con)
 		fight.monsterAttackNum = 3;
 		fight.monsterATT = 7;
 		fight.monsterAC = 17;
-
+		con.addFireM = true;
+		con.addRadiationM = true;
 		break;
 	}
 
 
 }
 
-void monsterFight(PlayervMonster fight, Items inv,Conditions con)
+void monsterFight(PlayervMonster &fight, Items &inv,Conditions &con)
 {
 	
-	int damage;
+	int damage = GenerateDamge(fight);
 	int Conhit = rand() % 20 + 1 + fight.playerWIS;
 	int ConhitM = rand() % 20 + 1 + fight.monsterConAttack;
-	char b = 205; // ═
-	char l = 201; // ╔
-	char r = 187; // ╗
-	char p = 186; // ║
-	char bl = 200;//╚
-	char br = 188;//╝
-	char trs = 185;//╣
-	char btrs = 204;//╠
-	findMonster(fight, inv);
+	
+	
 
 	cout << "\nA " << fight.monstername << " Meets you in the arena" << endl;
-	system("pause");
+	Sleep(1500);
 	system("CLS");
 
 	bool isAlive = true;
@@ -217,33 +214,21 @@ void monsterFight(PlayervMonster fight, Items inv,Conditions con)
 		int monsterhit = GenerateMonsterHit(fight);
 		int playerHit = GenerateHit(fight);
 
-		for (int i = 0; i < 75; i++) { cout << b; };
-		
-		cout << endl;
-		
-		cout << p << "Your HP :" << fight.playerHP << p << "                                               " << p << "MonsterHP:" << fight.monsterHP << p << endl;
-		
-		for (int i = 0; i < 75; i++) { cout << b; };
-		
-		cout << endl;
-
+		combatDisplay(fight);
 		DelayText(1, ("                                                                                "));
 		DelayText(1, ("                                                                                "));
 		DelayText(1, ("                          What will you do?                                     "));
 		DelayText(1, ("                                                                                "));
 		DelayText(1, ("1.Attack                                                                        "));
 		DelayText(1, ("2.Use Potion                                                                    "));
-		
+
 		cout << ">";
 		cin >> userInput;
-		
+		system("CLS");
 		switch (userInput)
 		{
 		case 1:
-			DelayText(1, ("                                                                                "));
-			DelayText(1, ("                                                                                "));
-			DelayText(1, ("                          What weapon will you use?                             "));
-			DelayText(1, ("                                                                                "));
+			combatDisplay(fight);
 			WepChoice(inv, fight);
 			//rollAnimate(fight);
 			if (GenerateHit(fight) > fight.monsterAC)
@@ -254,29 +239,31 @@ void monsterFight(PlayervMonster fight, Items inv,Conditions con)
 					damage = GenerateDamge(fight);
 					fight.monsterHP -= damage;
 					fight.monsterHP -= firedmg;
+					combatDisplay(fight);
 					cout << "You hit the " << fight.monstername << "for " << damage << " and ";
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 					cout << firedmg << " fire damage ";
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-					cout <<" the " << fight.monstername << " is now at :" << fight.monsterHP << endl;
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
+					cout << " the " << fight.monstername << " is now at :" << fight.monsterHP << endl;
 				}
 				else
 				{
 					damage = GenerateDamge(fight);
 					fight.monsterHP -= damage;
+					combatDisplay(fight);
 					cout << "You hit the " << fight.monstername << "for " << damage << ", the " << fight.monstername << " is now at :" << fight.monsterHP << endl;
 				}
 				if (con.addPoison == true)
 				{
 					bool alreadyPoison = false;
-					
+
 					if (Conhit > fight.monsterAC && alreadyPoison != true)
 					{
 						conPoison(fight, 2);
 						alreadyPoison = true;
 					}
 				}
-				
+
 				if (con.addShock == true)
 				{
 					bool alreadyShock = false;
@@ -290,19 +277,20 @@ void monsterFight(PlayervMonster fight, Items inv,Conditions con)
 				{
 					conRadiation(fight, 2);
 				}
-				
+
 				if (fight.monsterHP <= 0)
 				{
 					isAlive = false;
 				}
-				
+
 			}
 			else
 			{
+				combatDisplay(fight);
 				cout << "You miss!" << endl;
 			}
-			
-			system("pause");
+
+			Sleep(2000);
 			system("CLS");
 			break;
 		case 2:
@@ -314,14 +302,17 @@ void monsterFight(PlayervMonster fight, Items inv,Conditions con)
 			}
 			else
 			{
+				combatDisplay(fight);
 				cout << "Not enough potions" << endl;
 				break;
 			}
+			Sleep(1500);
+			system("CLS");
 		}
 		if (fight.monsterHP > 0)
 		{
 			int attack = fight.monsterAttackNum;
-
+			combatDisplay(fight);
 			do {
 				monsterhit = GenerateMonsterHit(fight);
 
@@ -334,26 +325,30 @@ void monsterFight(PlayervMonster fight, Items inv,Conditions con)
 					{
 						isAlive = false;
 					}
-					cout << "The " << fight.monstername << " hit you for " << damage << ", You are now at :" << fight.playerHP;
+
+					cout << "The " << fight.monstername << " hit you for " << damage << ", You are now at :" << fight.playerHP << endl;
 				}
 				else
 				{
+
 					cout << "The " << fight.monstername << " misses!" << endl;
 				}
 				attack--;
-				system("pause");
+				Sleep(1500);
+
 			} while (attack > 0);
 
 			do {
 				if (con.addFireM == true)
 				{
+
 					int firedmgM = conFire(fight);
-					fight.monsterHP -= damage;
-					fight.monsterHP -= firedmgM;
+					fight.playerHP -= damage;
+					fight.playerHP -= firedmgM;
 					cout << "The " << fight.monstername << " hit you for ";
 					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 					cout << firedmgM << " fire damage ";
-					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
 					cout << " you are now at " << fight.playerHP << endl;
 				}
 				if (con.addPoisonM == true)
@@ -379,30 +374,38 @@ void monsterFight(PlayervMonster fight, Items inv,Conditions con)
 				{
 					conRadiation(fight, 1);
 				}
+				Sleep(1500);
 			} while (fight.monsterConAttackNum > 0);
+			Sleep(1500);
+			system("CLS");
 		}
 		else
 		{
 			isAlive = false;
+			combatDisplay(fight);
 			cout << "The " << fight.monstername << " dies!" << endl;
 		}
-		system("pause");
-		system("CLS");
+
 	}
 
 	if (fight.playerHP <= 0 && fight.monsterHP <= 0)
 	{
+		combatDisplay(fight);
 		cout << "It is a tie!" << endl;
+
 	}
 	else if (fight.playerHP <= 0)
 	{
+		combatDisplay(fight);
 		cout << fight.monstername << " wins!" << endl;
+		
 	}
 	else if (fight.monsterHP <= 0)
 	{
+		combatDisplay(fight);
 		cout << "Player wins!" << endl;
 	}
-	system("pause");
+	Sleep(1500);
 	system("CLS");
 }
 
@@ -554,3 +557,37 @@ void CheckReward(PlayervMonster &fight, Items &inv, int x)
 	system("CLS");
 }
 
+void combatDisplay(PlayervMonster fight)
+{
+	char b = 205; // ═
+	char l = 201; // ╔
+	char r = 187; // ╗
+	char p = 186; // ║
+	char bl = 200;//╚
+	char br = 188;//╝
+	char trs = 185;//╣
+	char btrs = 204;//╠
+
+
+	for (int i = 0; i < 75; i++) { cout << b; };
+
+	cout << endl;
+
+	cout << p << "Your HP :" << fight.playerHP << p << "                                               " << p << "MonsterHP:" << fight.monsterHP << p << endl;
+
+	for (int i = 0; i < 75; i++) { cout << b; };
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	cout << endl;
+	for (int i = 0; i < 75; i++) { cout << b; };
+	cout << endl;
+}

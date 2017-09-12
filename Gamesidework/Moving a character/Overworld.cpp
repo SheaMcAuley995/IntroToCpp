@@ -422,6 +422,7 @@ void Overworld(PlayervMonster &fight, Items &Inv,Conditions &con)
 			{
 				if (Inv.playerCash < 25)
 				{
+					Inv.playerCash -= 25;
 					int mutation = rand() % 5 + 1;
 
 					switch (mutation)
@@ -464,7 +465,7 @@ void Overworld(PlayervMonster &fight, Items &Inv,Conditions &con)
 			break;
 		case 5:
 			DelayText(1, ("                                  Arena                                         "));
-			if (ArenaFlavor == true)
+			if (ArenaFlavor == false)
 			{
 				DelayText(10, ("You approach the grand arena near the center of the city. Only here will you see"));
 				DelayText(10, ("the wealthy mixing with the filth that litters the commonwealth. You can hear   "));
@@ -497,9 +498,27 @@ void Overworld(PlayervMonster &fight, Items &Inv,Conditions &con)
 				break;
 			case 3:
 				findMonsterHARD(fight, Inv, con);
+				break;
 			}
-			findMonster(fight, Inv);
 			monsterFight(fight, Inv, con);
+			if (fight.playerHP <= 0)
+			{
+				system("CLS");
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                     GAME             OVER                                      "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				DelayText(0, ("                                                                                "));
+				Sleep(1000);
+				exit(0);
+			}
 			switch (userInput)
 			{
 			case 1:
@@ -511,27 +530,6 @@ void Overworld(PlayervMonster &fight, Items &Inv,Conditions &con)
 			case 3:
 				CheckReward(fight, Inv, 3);
 				break;
-			}
-			
-			system("pause");
-			system("CLS");
-			if (fight.playerHP <= 0)
-			{
-				system("CLS");
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                     GAME             OVER                                      "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				DelayText(10, ("                                                                                "));
-				system("pause");
-
 			}
 
 			break;

@@ -20,7 +20,7 @@ int main()
 	Conditions con;
 	FillStore(Inv);
 	CharacterCreate(battle);
-	TitleScreen(battle);
+	//TitleScreen(battle);
 	Overworld(battle, Inv, con);
 	return 0;
 }
