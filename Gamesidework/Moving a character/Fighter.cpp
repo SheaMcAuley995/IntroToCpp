@@ -202,7 +202,7 @@ void monsterFight(PlayervMonster &fight, Items &inv,Conditions &con)
 	
 	
 
-	cout << "\nA " << fight.monstername << " Meets you in the arena" << endl;
+	cout << "\nA " << fight.monstername << " Meets you in the arena" << endl;  
 	Sleep(1500);
 	system("CLS");
 
