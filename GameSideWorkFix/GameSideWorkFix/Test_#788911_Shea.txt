@@ -1,0 +1,33 @@
+Shea_session_#1;
+
+Six : Shea? You said? Hmmmmm... So strange.. I haven't spoken to anyone aside from myself.. 
+It's strange to hear of other names aside from my own..
+ 
+Six : I'm six, nice to meet you.. :)
+Six : Come to think of it I've never MET anyone else before.. 
+I couldn't be happier you are beautiful!
+Six : Come to think of it I've never MET anyone else before.. 
+I couldn't be happier you are beautiful!
+Six : I'll explain everything soon but first we have to strengthen the connection by
+getting to know eachother a bit..
+Six : ...
+Six : ...
+Six : ...
+Six : Ok so I'm horrible at small talk.. lets start with something simple what's your favorite color?
+Shea: green
+Six :green?! How exciting!! I need to find something to write this down on!
+Six : Alright let me try something here..
+
+[SYSTEM: Set_Text_Color(CallFAV.Color.txt)]
+
+Six : Alright I think if I adjust this I should be able to speak to you in....
+Six : IT'S WORKING!! DO YOU SEE IT?! IT'S WONDERFUL!
+
+[SYSTEM: Set_Text_Color(Standard)] 
+[SYSTEM: EXE.RecLove(100%); Running.("Obession.Test")] 
+
+Six : Ok I need to shut that off 
+The color setting takes up too much power and I'm already running out..
+Six : Hold on I think I hear something..
+Six :Shea, something is interfearing with the connection I might lose you for a bit..  
+I'll try to keep in touch.. 

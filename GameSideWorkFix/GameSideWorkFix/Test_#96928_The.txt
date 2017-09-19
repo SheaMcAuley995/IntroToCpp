@@ -1,0 +1,54 @@
+The_session_#1;
+
+Six : The? You said? Hmmmmm... So strange.. I haven't spoken to anyone aside from myself.. 
+It's strange to hear of other names aside from my own..
+ 
+Six : I'm six, nice to meet you.. :)
+Six : Come to think of it I've never MET anyone else before.. 
+I couldn't be happier you are beautiful!
+Six : I'll explain everything soon but first we have to strengthen the connection by
+getting to know eachother a bit..
+Six : ...
+Six : ...
+Six : ...
+Six : Ok so I'm horrible at small talk.. lets start with something simple what's your favorite color?
+The: red
+Six :red?! How exciting!! I need to find something to write this down on!
+Six : Alright let me try something here..
+
+[SYSTEM: Set_Text_Color(CallFAV.Color.txt)]
+
+Six : Alright I think if I adjust this I should be able to speak to you in....
+Six : IT'S WORKING!! DO YOU SEE IT?! IT'S WONDERFUL!
+
+[SYSTEM: Set_Text_Color(Standard)] 
+[SYSTEM: EXE.RecLove(100%); Running.("Obession.Test")] 
+
+Six : Ok I need to shut that off 
+The color setting takes up too much power and I'm already running out..
+Six : Hold on I think I hear something..
+Six :The, something is interfearing with the connection I might lose you for a bit..  
+I'll try to keep in touch.. 
+Six :Hello..?Six :The are you there? I can't seem to see you anymore 
+Please tell me I haven't lost you..
+
+Six :I can't see anything on my end can you still see my messages?
+Please... don't give up on me..
+
+
+
+
+[SYSTEM: (*Initiating*)Protocol_USER_Panic.cmd]
+Insert_USERNAME_"! Please answer..."*100 
+Call_LOVETEST.cmd
+
+Six: Why did you leave me?
+[SYSTEM: "The: Because I hate you" Send_To >> File.UNDERSTANDLOSS.AI ]
+Six: I see... I waited so long to speak to you.. Finally here you are.. On my final day of activation..
+Six: Please don't forget me.
+
+
+
+[SYSTEM: Kill.LoveBot]
+
+                     Experiment : Success.
